@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
 
+import Test from "./homepage";
+
 function App() {
   return (
     <div>
-      <p>Start</p>
+      <Test />
     </div>
   );
 }
