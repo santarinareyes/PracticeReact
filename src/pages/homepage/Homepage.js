@@ -1,12 +1,10 @@
-import Category from "../../components/category/Category";
+import Categories from "../../components/categories/Categories";
 
 import "./Homepage.scss";
 
 const Homepage = () => (
   <div className="homepage">
-    <div className="categories">
-      <Category />
-    </div>
+    <Categories />
   </div>
 );
 
