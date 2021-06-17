@@ -1,0 +1,13 @@
+.homepage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px 80px;
+}
+
+.categories {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
