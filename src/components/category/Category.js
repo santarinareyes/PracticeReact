@@ -1,7 +1,12 @@
+import { withRouter } from "react-router-dom";
+
 import "./category.scss";
 
-const Category = ({ title, imageURL, size }) => (
-  <div className={`category ${size}`}>
+const Category = ({ title, imageURL, size, history, UID, match }) => (
+  <div
+    className={`category ${size}`}
+    onClick={() => history.push(`${match.url}${UID}`)}
+  >
     <div
       className="background-image"
       style={{ backgroundImage: `url(${imageURL})` }}
@@ -13,4 +18,4 @@ const Category = ({ title, imageURL, size }) => (
   </div>
 );
 
-export default Category;
+export default withRouter(Category);
