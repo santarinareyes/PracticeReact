@@ -15,9 +15,11 @@ class Products extends Component {
     const { collections } = this.state;
     return (
       <div>
-        {collections.map(({ id, ...otherProps }) => (
-          <CategoryPreview key={id} {...otherProps} />
-        ))}
+        {collections
+          .filter((item, index) => index < 3)
+          .map(({ id, ...otherProps }) => (
+            <CategoryPreview key={id} {...otherProps} />
+          ))}
       </div>
     );
   }
