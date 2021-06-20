@@ -1,4 +1,6 @@
 import { Component } from "react";
+
+import CategoryPreview from "../../components/category-preview/CategoryPreview";
 import { collections } from "./products.data";
 
 class Products extends Component {
@@ -10,9 +12,12 @@ class Products extends Component {
     };
   }
   render() {
+    const { collections } = this.state;
     return (
       <div>
-        <p>Test</p>
+        {collections.map(({ id, ...otherProps }) => (
+          <CategoryPreview key={id} {...otherProps} />
+        ))}
       </div>
     );
   }
