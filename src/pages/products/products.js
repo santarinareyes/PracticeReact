@@ -9,6 +9,13 @@ class Products extends Component {
       collections,
     };
   }
+  render() {
+    return (
+      <div>
+        <p>Test</p>
+      </div>
+    );
+  }
 }
 
 export default Products;
