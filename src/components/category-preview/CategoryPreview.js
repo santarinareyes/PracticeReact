@@ -1,3 +1,4 @@
+import CategoryItem from "../category-item/CategoryItem";
 import "./categoryPreview.scss";
 
 const CategoryPreview = ({ title, items }) => (
@@ -5,9 +6,11 @@ const CategoryPreview = ({ title, items }) => (
     <h1>{title.toUpperCase()}</h1>
     <div>
       <div>
-        {items.map((item) => (
-          <div key={item.id}>{item.name}</div>
-        ))}
+        {items
+          .filter((item, index) => index < 4)
+          .map(({ id, ...itemProps }) => (
+            <CategoryItem key={id} {...itemProps} />
+          ))}
       </div>
     </div>
   </div>
