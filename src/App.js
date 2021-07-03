@@ -8,7 +8,7 @@ import SignInOrSignUp from "./pages/signInOrSignUp/SignInOrSignUp";
 import Header from "./components/header/Header";
 import { auth, createUserProfileDoc } from "./firebase/firebase.utils";
 
-import { setCurrentUser } from "./redux/user/user.action";
+import { setCurrentUser } from "./redux/user/user.actions";
 
 import "./App.css";
 

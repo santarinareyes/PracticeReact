@@ -2,11 +2,12 @@
   width: 22%;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 650px;
   align-items: center;
+  position: relative;
 
   .image {
-    width: 100%;
+    width: 110%;
     height: 95%;
     background-size: cover;
     background-position: center;
@@ -28,5 +29,23 @@
 
   .price {
     width: 10%;
+  }
+
+  .custom-button {
+    width: 80%;
+    position: absolute;
+    top: 525px;
+    display: none;
+    opacity: 0.9;
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.9;
+    }
+
+    .custom-button {
+      display: flex;
+    }
   }
 }

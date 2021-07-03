@@ -1,3 +1,4 @@
+import CustomButton from "../custom-button/CustomButton";
 import "./categoryItem.scss";
 
 const CategoryItem = ({ id, name, price, imageURL }) => (
@@ -7,6 +8,7 @@ const CategoryItem = ({ id, name, price, imageURL }) => (
       <span className="name">{name}</span>
       <span className="price">{price}</span>
     </div>
+    <CustomButton inverted>Add to cart</CustomButton>
   </div>
 );
 
