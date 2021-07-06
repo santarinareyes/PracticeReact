@@ -1,6 +1,6 @@
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
-import "./category.scss";
+import './category.scss';
 
 const Category = ({ title, imageURL, size, history, UID, match }) => (
   <div
@@ -8,12 +8,12 @@ const Category = ({ title, imageURL, size, history, UID, match }) => (
     onClick={() => history.push(`${match.url}${UID}`)}
   >
     <div
-      className="background-image"
+      className='background-image'
       style={{ backgroundImage: `url(${imageURL})` }}
     />
-    <div className="content">
-      <h1 className="title">{title.toUpperCase()}</h1>
-      <span className="shop-now">SHOP NOW</span>
+    <div className='content'>
+      <h1 className='title'>{title.toUpperCase()}</h1>
+      <span className='shop-now'>SHOP NOW</span>
     </div>
   </div>
 );
