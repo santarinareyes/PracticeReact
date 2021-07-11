@@ -1,36 +1,9 @@
-import { Component, useState } from "react";
+import CollectionsOverview from '../../components/collections-overview/CollectionsOverview'
 
-import CategoryPreview from "../../components/category-preview/CategoryPreview";
-import { collections } from "./products.data";
+const Products = ({ collections }) => (
+  <div>
+    <CollectionsOverview />
+  </div>
+)
 
-class Products extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      collections,
-    };
-  }
-  render() {
-    const { collections } = this.state;
-    return (
-      <div>
-        {collections.map(({ id, ...otherProps }) => (
-          <CategoryPreview key={id} {...otherProps} />
-        ))}
-      </div>
-    );
-  }
-}
-
-// const Products = () => {
-//   return (
-//     <div>
-//       {collections.map(({ id, ...otherProps }) => (
-//         <CategoryPreview key={id} {...otherProps} />
-//       ))}
-//     </div>
-//   );
-// };
-
-export default Products;
+export default Products
