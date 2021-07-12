@@ -1,5 +1,5 @@
 .category-item {
-  width: 22%;
+  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 650px;
@@ -7,7 +7,7 @@
   position: relative;
 
   .image {
-    width: 110%;
+    width: 100%;
     height: 95%;
     background-size: cover;
     background-position: center;
@@ -23,7 +23,7 @@
   }
 
   .name {
-    width: 90%;
+    width: 80%;
     margin-bottom: 15px;
   }
 
