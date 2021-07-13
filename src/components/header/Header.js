@@ -13,7 +13,7 @@ import * as S from './styles'
 
 const Header = ({ currentUser, hidden }) => (
   <S.HeaderContainer>
-    <S.LogoContainer>
+    <S.LogoContainer to='/'>
       <Logo />
     </S.LogoContainer>
     <S.NavOptions>

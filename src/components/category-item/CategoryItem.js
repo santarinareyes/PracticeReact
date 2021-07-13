@@ -1,33 +1,32 @@
-import { connect } from "react-redux";
-import { addItemToCart } from "../../redux/cart/cart.actions";
+import { connect } from 'react-redux'
+import { addItemToCart } from '../../redux/cart/cart.actions'
 
-import CustomButton from "../custom-button/CustomButton";
-import "./categoryItem.scss";
+import * as S from './styles'
 
 const CategoryItem = ({ item, addItemToCart }) => {
-  const { imageURL, name, price } = item;
+  const { imageURL, name, price } = item
 
   return (
-    <div className="category-item">
-      <div className="image" style={{ backgroundImage: `url(${imageURL})` }} />
-      <div className="product-info">
-        <span className="name">{name}</span>
-        <span className="price">{price}</span>
-      </div>
-      <CustomButton
+    <S.CategoryItem>
+      <S.Image imageURL={imageURL} />
+      <S.ProductInfoContainer>
+        <S.Name className='name'>{name}</S.Name>
+        <S.Price className='price'>{price}</S.Price>
+      </S.ProductInfoContainer>
+      <S.AddButton
         inverted
         onClick={() => {
-          addItemToCart(item);
+          addItemToCart(item)
         }}
       >
         Add to cart
-      </CustomButton>
-    </div>
-  );
-};
+      </S.AddButton>
+    </S.CategoryItem>
+  )
+}
 
-const mapDispatchToProps = (dispatch) => ({
-  addItemToCart: (item) => dispatch(addItemToCart(item)),
-});
+const mapDispatchToProps = dispatch => ({
+  addItemToCart: item => dispatch(addItemToCart(item)),
+})
 
-export default connect(null, mapDispatchToProps)(CategoryItem);
+export default connect(null, mapDispatchToProps)(CategoryItem)
