@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
@@ -20,7 +19,9 @@ const Header = ({ currentUser, hidden }) => (
     <S.NavOptions>
       <S.OptionLink to='/products'>Products</S.OptionLink>
       {currentUser ? (
-        <S.OptionDiv onClick={() => auth.signOut()}>Sign Out</S.OptionDiv>
+        <S.OptionLink as='div' onClick={() => auth.signOut()}>
+          Sign Out
+        </S.OptionLink>
       ) : (
         <S.OptionLink to='/signin'>Sign In</S.OptionLink>
       )}
