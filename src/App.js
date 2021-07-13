@@ -2,6 +2,7 @@ import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
+import styled from 'styled-components'
 
 import Homepage from './pages/homepage/Homepage'
 import ProductsPage from './pages/products/ProductsPage'

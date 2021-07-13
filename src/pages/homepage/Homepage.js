@@ -1,11 +1,12 @@
-import Categories from "../../components/categories/Categories";
+import Categories from '../../components/categories/Categories'
 
-import "./Homepage.scss";
+import * as S from './styles'
+import './Homepage.scss'
 
 const Homepage = () => (
-  <div className="homepage">
+  <S.HomePageContainer>
     <Categories />
-  </div>
-);
+  </S.HomePageContainer>
+)
 
-export default Homepage;
+export default Homepage
