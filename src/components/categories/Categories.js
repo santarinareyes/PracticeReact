@@ -1,22 +1,22 @@
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 
-import { selectDirectoryCategories } from '../../redux/directory/directory.selectors';
+import { selectDirectoryCategories } from '../../redux/directory/directory.selectors'
 
-import Category from '../category/Category';
+import Category from '../category/Category'
 
-import './categories.scss';
+import * as S from './styles'
 
 const Categories = ({ shopCategories }) => (
-  <div className='categories'>
+  <S.CategoriesContainer>
     {shopCategories.map(({ id, ...otherProps }) => (
       <Category key={id} {...otherProps} />
     ))}
-  </div>
-);
+  </S.CategoriesContainer>
+)
 
 const mapStateToProps = createStructuredSelector({
   shopCategories: selectDirectoryCategories,
-});
+})
 
-export default connect(mapStateToProps)(Categories);
+export default connect(mapStateToProps)(Categories)
