@@ -8,14 +8,11 @@ const Category = ({ title, imageURL, size, history, UID, match }) => (
     size={size}
     onClick={() => history.push(`${match.url}${UID}`)}
   >
-    <div
-      className='background-image'
-      style={{ backgroundImage: `url(${imageURL})` }}
-    />
-    <div className='content'>
-      <h1 className='title'>{title.toUpperCase()}</h1>
-      <span className='shop-now'>SHOP NOW</span>
-    </div>
+    <S.BackgroundImage className='background-image' imageURL={imageURL} />
+    <S.Content className='content'>
+      <S.Heading1>{title}</S.Heading1>
+      <S.Text>SHOP NOW</S.Text>
+    </S.Content>
   </S.CategoryContainer>
 )
 
