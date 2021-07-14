@@ -1,10 +1,11 @@
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 
-import './category.scss';
+import * as S from './styles'
+import './category.scss'
 
 const Category = ({ title, imageURL, size, history, UID, match }) => (
-  <div
-    className={`category ${size}`}
+  <S.CategoryContainer
+    size={size}
     onClick={() => history.push(`${match.url}${UID}`)}
   >
     <div
@@ -15,7 +16,7 @@ const Category = ({ title, imageURL, size, history, UID, match }) => (
       <h1 className='title'>{title.toUpperCase()}</h1>
       <span className='shop-now'>SHOP NOW</span>
     </div>
-  </div>
-);
+  </S.CategoryContainer>
+)
 
-export default withRouter(Category);
+export default withRouter(Category)
