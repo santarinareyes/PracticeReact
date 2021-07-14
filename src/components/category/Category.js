@@ -1,7 +1,6 @@
 import { withRouter } from 'react-router-dom'
 
 import * as S from './styles'
-import './category.scss'
 
 const Category = ({ title, imageURL, size, history, UID, match }) => (
   <S.CategoryContainer

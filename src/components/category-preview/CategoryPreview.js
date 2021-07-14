@@ -1,17 +1,17 @@
-import CategoryItem from "../category-item/CategoryItem";
-import "./categoryPreview.scss";
+import CategoryItem from '../category-item/CategoryItem'
+import * as S from './styles'
 
 const CategoryPreview = ({ title, items }) => (
-  <div className="category-preview">
-    <h1 className="title">{title.toUpperCase()}</h1>
-    <div className="preview">
+  <S.CategoryPreviewContainer>
+    <S.Heading1>{title.toUpperCase()}</S.Heading1>
+    <S.PreviewItems>
       {items
         .filter((item, index) => index < 4)
-        .map((item) => (
+        .map(item => (
           <CategoryItem key={item.id} item={item} />
         ))}
-    </div>
-  </div>
-);
+    </S.PreviewItems>
+  </S.CategoryPreviewContainer>
+)
 
-export default CategoryPreview;
+export default CategoryPreview
