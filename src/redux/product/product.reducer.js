@@ -1,8 +1,7 @@
-import { collections } from '../../pages/products/products.data'
 import ProductActionTypes from './product.types'
 
 const INITIAL_STATE = {
-  collections,
+  collections: null,
 }
 
 const productReducer = (state = INITIAL_STATE, action) => {
