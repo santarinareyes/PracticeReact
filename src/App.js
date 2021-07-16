@@ -54,50 +54,6 @@ const App = ({ currentUser, setCurrentUser }) => {
   )
 }
 
-// class App extends React.Component {
-//   unsubscribeFromAuth = null
-
-//   componentDidMount() {
-//     const { setCurrentUser } = this.props
-//     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-//       if (userAuth) {
-//         const userRef = await createUserProfileDoc(userAuth)
-//         userRef.onSnapshot(snapShot => {
-//           setCurrentUser({
-//             id: snapShot.id,
-//             ...snapShot.data(),
-//           })
-//         })
-//       }
-//       setCurrentUser(userAuth)
-//     })
-//   }
-
-//   componentWillUnmount() {
-//     this.unsubscribeFromAuth()
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <Header />
-//         <Switch>
-//           <Route exact path='/' component={Homepage} />
-//           <Route exact path='/checkout' component={Checkout} />
-//           <Route
-//             exact
-//             path='/signin'
-//             render={() =>
-//               this.props.currentUser ? <Redirect to='/' /> : <SignInOrSignUp />
-//             }
-//           />
-//           <Route path='/products' component={ProductsPage} />
-//         </Switch>
-//       </div>
-//     )
-//   }
-// }
-
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 })
