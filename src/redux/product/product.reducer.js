@@ -18,6 +18,11 @@ const productReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         collections: action.payload,
       }
+    case ProductActionTypes.FETCH_COLLECTIONS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+      }
     default:
       return state
   }
