@@ -19,7 +19,8 @@ const ProductsPage = ({ match, updateCollections }) => {
 
   useEffect(() => {
     const collectionRef = firestore.collection('collections')
-    collectionRef.onSnapshot(async snapshot => {
+
+    collectionRef.get().then(snapshot => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot)
       updateCollections(collectionsMap)
       setIsLoading(false)
