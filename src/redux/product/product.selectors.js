@@ -19,3 +19,8 @@ export const selectCollectionsForPreview = createSelector(
   collections =>
     collections ? Object.keys(collections).map(key => collections[key]) : []
 )
+
+export const selectCollectionIsFetching = createSelector(
+  [selectProduct],
+  product => product.isFetching
+)
