@@ -6,12 +6,20 @@ import { connect } from 'react-redux'
 import { fetchCollectionsStartAsync } from '../../redux/product/product.actions'
 import WithSpinner from '../../components/with-spinner/WithSpinner'
 import { createStructuredSelector } from 'reselect'
-import { selectCollectionIsFetching } from '../../redux/product/product.selectors'
+import {
+  selectCollectionIsFetching,
+  selectIsCollectionLoaded,
+} from '../../redux/product/product.selectors'
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
 const CollectionWithSpinner = WithSpinner(Collection)
 
-const ProductsPage = ({ match, isFetching, fetchCollectionsStartAsync }) => {
+const ProductsPage = ({
+  match,
+  isFetching,
+  fetchCollectionsStartAsync,
+  isCollectionsLoaded,
+}) => {
   useEffect(() => {
     fetchCollectionsStartAsync()
   }, [fetchCollectionsStartAsync])
@@ -28,7 +36,7 @@ const ProductsPage = ({ match, isFetching, fetchCollectionsStartAsync }) => {
       <Route
         path={`${match.path}/:collection`}
         render={props => (
-          <CollectionWithSpinner isLoading={isFetching} {...props} />
+          <CollectionWithSpinner isLoading={!isCollectionsLoaded} {...props} />
         )}
       />
     </div>
@@ -37,6 +45,7 @@ const ProductsPage = ({ match, isFetching, fetchCollectionsStartAsync }) => {
 
 const mapStateToProps = createStructuredSelector({
   isFetching: selectCollectionIsFetching,
+  isCollectionsLoaded: selectIsCollectionLoaded,
 })
 
 const mapDispatchToProps = dispatch => ({
