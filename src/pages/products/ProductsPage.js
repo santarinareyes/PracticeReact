@@ -26,8 +26,6 @@ const ProductsPage = ({ match, updateCollections }) => {
     })
   }, [updateCollections])
 
-  console.log('productsPage, render')
-
   return (
     <div>
       <Route
