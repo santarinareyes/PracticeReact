@@ -3,6 +3,7 @@ import ProductActionTypes from './product.types'
 const INITIAL_STATE = {
   collections: null,
   isFetching: false,
+  errorMessage: undefined,
 }
 
 const productReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +23,7 @@ const productReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
+        errorMessage: action.payload,
       }
     default:
       return state
