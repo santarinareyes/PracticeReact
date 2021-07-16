@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
@@ -13,9 +13,7 @@ import Header from './components/header/Header'
 import { auth, createUserProfileDoc } from './firebase/firebase.utils'
 import { selectCurrentUser } from './redux/user/user.selectors'
 import { setCurrentUser } from './redux/user/user.actions'
-
 import './App.css'
-import { useEffect } from 'react'
 
 const App = ({ currentUser, setCurrentUser }) => {
   useEffect(() => {
@@ -32,8 +30,6 @@ const App = ({ currentUser, setCurrentUser }) => {
       setCurrentUser(userAuth)
     })
   }, [setCurrentUser])
-
-  console.log('app rendered')
 
   return (
     <div>
