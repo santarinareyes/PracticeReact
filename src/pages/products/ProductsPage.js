@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import CollectionsOverview from '../../components/collections-overview/CollectionsOverview'
 import Collection from '../collection/Collection'
 import { connect } from 'react-redux'
-import {
-  fetchCollectionsStartAsync,
-  updateCollections,
-} from '../../redux/product/product.actions'
+import { fetchCollectionsStartAsync } from '../../redux/product/product.actions'
 import WithSpinner from '../../components/with-spinner/WithSpinner'
 import { createStructuredSelector } from 'reselect'
 import { selectCollectionIsFetching } from '../../redux/product/product.selectors'
@@ -18,8 +15,6 @@ const ProductsPage = ({ match, isFetching, fetchCollectionsStartAsync }) => {
   useEffect(() => {
     fetchCollectionsStartAsync()
   }, [fetchCollectionsStartAsync])
-
-  console.log('rendered productPage')
 
   return (
     <div>
