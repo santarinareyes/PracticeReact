@@ -3,12 +3,12 @@ import { Route } from 'react-router-dom'
 import CollectionsOverviewContainer from '../../components/collections-overview/CollectionsOverview.container'
 import CollectionContainer from '../collection/Collection.container'
 import { connect } from 'react-redux'
-import { fetchCollectionsStartAsync } from '../../redux/product/product.actions'
+import { fetchCollectionsStart } from '../../redux/product/product.actions'
 
-const ProductsPage = ({ match, fetchCollectionsStartAsync }) => {
+const ProductsPage = ({ match, fetchCollectionsStart }) => {
   useEffect(() => {
-    fetchCollectionsStartAsync()
-  }, [fetchCollectionsStartAsync])
+    fetchCollectionsStart()
+  }, [fetchCollectionsStart])
 
   return (
     <div>
@@ -26,7 +26,7 @@ const ProductsPage = ({ match, fetchCollectionsStartAsync }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync()),
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 })
 
 export default connect(null, mapDispatchToProps)(ProductsPage)
