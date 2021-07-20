@@ -16,20 +16,20 @@ import { setCurrentUser } from './redux/user/user.actions'
 import './App.css'
 
 const App = ({ currentUser, setCurrentUser }) => {
-  useEffect(() => {
-    auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDoc(userAuth)
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          })
-        })
-      }
-      setCurrentUser(userAuth)
-    })
-  }, [setCurrentUser])
+  // useEffect(() => {
+  //   auth.onAuthStateChanged(async userAuth => {
+  //     if (userAuth) {
+  //       const userRef = await createUserProfileDoc(userAuth)
+  //       userRef.onSnapshot(snapShot => {
+  //         setCurrentUser({
+  //           id: snapShot.id,
+  //           ...snapShot.data(),
+  //         })
+  //       })
+  //     }
+  //     setCurrentUser(userAuth)
+  //   })
+  // }, [setCurrentUser])
 
   return (
     <div>
