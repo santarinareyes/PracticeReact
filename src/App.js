@@ -1,18 +1,14 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-
 import Homepage from './pages/homepage/Homepage'
 import ProductsPage from './pages/products/ProductsPage'
 import SignInOrSignUp from './pages/signInOrSignUp/SignInOrSignUp'
 import Checkout from './pages/checkout/Checkout'
-
 import Header from './components/header/Header'
-
 import { selectCurrentUser } from './redux/user/user.selectors'
 import { checkUserSession } from './redux/user/user.actions'
 import { useEffect } from 'react'
-
 import './App.css'
 
 const App = ({ currentUser, checkUserSession }) => {

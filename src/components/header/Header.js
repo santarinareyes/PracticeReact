@@ -1,15 +1,11 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-
 import CartIcon from '../cart-icon/CartIcon'
 import CartDropdown from '../cart-dropdown/CartDropdown'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { signOutStart } from '../../redux/user/user.actions'
-
-import { auth } from '../../firebase/firebase.utils'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
-
 import * as S from './styles'
 
 const Header = ({ currentUser, hidden, signOutStart }) => (
