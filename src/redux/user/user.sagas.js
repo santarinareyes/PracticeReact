@@ -11,7 +11,7 @@ import {
   signInFailure,
   signOutSuccess,
   signOutFailure,
-  signUpError,
+  signUpFailure,
 } from './user.actions'
 
 export function* getSnapshotFromUserAuth(userAuth) {
@@ -68,7 +68,7 @@ export function* signUp({ payload: { email, password, displayName } }) {
     const userSnapshot = yield userRef.get()
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
   } catch (err) {
-    yield put(signUpError(err))
+    yield put(signUpFailure(err))
   }
 }
 

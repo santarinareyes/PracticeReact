@@ -46,7 +46,7 @@ export const signUpSuccess = user => ({
   payload: user,
 })
 
-export const signUpError = err => ({
+export const signUpFailure = err => ({
   type: UserActionTypes.SIGN_UP_FAILURE,
   payload: err,
 })
