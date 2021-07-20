@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import FormInput from '../form-input/FormInput'
 import CustomButton from '../custom-button/CustomButton'
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils'
 import {
   googleSignInStart,
   emailSignInStart,
@@ -27,13 +26,6 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
     e.preventDefault()
     const { email, password } = accountInfo
     emailSignInStart(email, password)
-
-    // try {
-    //   await auth.signInWithEmailAndPassword(email, password)
-    //   setAccountInfo(signInInitial)
-    // } catch (err) {
-    //   console.error(err)
-    // }
   }
 
   return (
