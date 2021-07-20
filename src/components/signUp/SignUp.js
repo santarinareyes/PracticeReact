@@ -23,8 +23,7 @@ const SignUp = ({ signUpStart }) => {
       alert("Passwords don't match")
       return
     }
-
-    signUpStart(email, password, displayName)
+    signUpStart({ email, password, displayName })
   }
 
   const handleChange = ({ target }) => {
@@ -76,8 +75,7 @@ const SignUp = ({ signUpStart }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  signUpStart: (email, password, displayName) =>
-    dispatch(signUpStart({ email, password, displayName })),
+  signUpStart: userInfo => dispatch(signUpStart(userInfo)),
 })
 
 export default connect(null, mapDispatchToProps)(SignUp)
