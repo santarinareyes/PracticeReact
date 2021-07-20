@@ -5,12 +5,19 @@ import {
   auth,
   createUserProfileDoc,
 } from '../../firebase/firebase.utils'
+import { googleSignInSuccess, googleSignInFailure } from './user.actions'
 
 export function* signInWithGoogle() {
   try {
-    const userRef = yield auth.signInWithPopup(googleProvider)
-    console.log('userRef', userRef)
-  } catch (err) {}
+    const { user } = yield auth.signInWithPopup(googleProvider)
+    const userRef = yield call(createUserProfileDoc, user)
+    const userSnapshot = yield userRef.get()
+    yield put(
+      googleSignInSuccess({ id: userSnapshot.uid, ...userSnapshot.data() })
+    )
+  } catch (err) {
+    yield put(googleSignInFailure(err))
+  }
 }
 
 export function* onGoogleSignInStart() {
