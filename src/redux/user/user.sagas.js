@@ -7,12 +7,20 @@ import {
 } from '../../firebase/firebase.utils'
 import { signInSuccess, signInFailure } from './user.actions'
 
+export function* getSnapshotFromUserAuth(userAuth) {
+  try {
+    const userRef = yield call(createUserProfileDoc, userAuth)
+    const userSnapshot = yield userRef.get()
+    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
+  } catch (err) {
+    yield put(signInFailure(err))
+  }
+}
+
 export function* signInWithGoogle() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider)
-    const userRef = yield call(createUserProfileDoc, user)
-    const userSnapshot = yield userRef.get()
-    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
+    yield getSnapshotFromUserAuth(user)
   } catch (err) {
     yield put(signInFailure(err))
   }
@@ -25,9 +33,7 @@ export function* onGoogleSignInStart() {
 export function* signInWithEmailAndPassword({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password)
-    const userRef = yield call(createUserProfileDoc, user)
-    const userSnapshot = yield userRef.get()
-    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
+    yield getSnapshotFromUserAuth(user)
   } catch (err) {
     yield put(signInFailure(err))
   }
