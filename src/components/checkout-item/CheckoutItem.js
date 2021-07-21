@@ -1,11 +1,9 @@
 import { connect } from 'react-redux'
-
 import {
   clearItemFromCart,
   addItemToCart,
   removeItemFromCart,
 } from '../../redux/cart/cart.actions'
-
 import * as S from './styles'
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {

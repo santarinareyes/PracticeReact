@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { addItemToCart } from '../../redux/cart/cart.actions'
-
 import * as S from './styles'
 
 const CategoryItem = ({ item, addItemToCart }) => {

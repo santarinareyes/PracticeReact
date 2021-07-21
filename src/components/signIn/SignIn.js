@@ -6,7 +6,6 @@ import {
   emailSignInStart,
 } from '../../redux/user/user.actions'
 import { connect } from 'react-redux'
-
 import './signIn.scss'
 
 const SignIn = ({ googleSignInStart, emailSignInStart }) => {

@@ -1,10 +1,7 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-
 import { selectDirectoryCategories } from '../../redux/directory/directory.selectors'
-
 import Category from '../category/Category'
-
 import * as S from './styles'
 
 const Categories = ({ shopCategories }) => (

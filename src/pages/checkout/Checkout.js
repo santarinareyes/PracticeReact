@@ -1,14 +1,11 @@
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-
 import CheckoutItem from '../../components/checkout-item/CheckoutItem'
 import StripeCheckoutButton from '../../components/stripe-checkout-button/StripeCheckoutButton'
-
 import {
   selectCartItems,
   selectCartTotal,
 } from '../../redux/cart/cart.selectors'
-
 import './checkout.scss'
 
 const Checkout = ({ cartItems, cartTotal }) => (
