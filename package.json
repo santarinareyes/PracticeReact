@@ -1,8 +1,12 @@
 {
   "name": "practice-ecom",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.16.1",
+    "npm": "6.13.4"
+  },
   "scripts": {
-    "client": "cd frontend && yarn start",
+    "client": "cd frontend && npm start",
     "server": "nodemon server.js",
     "build": "cd frontend && npm run build",
     "dev": "concurrently --kill-others-on-fail \"npm server\" \"npm client\"",
