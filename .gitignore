@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /frontend/node_modules
+/context-practice/node_modules
 /.pnp
 /frontend/.pnp
 .pnp.js
