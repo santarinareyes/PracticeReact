@@ -14,18 +14,6 @@ import './App.css'
 const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
     checkUserSession()
-    // auth.onAuthStateChanged(async userAuth => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDoc(userAuth)
-    //     userRef.onSnapshot(snapShot => {
-    //       setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       })
-    //     })
-    //   }
-    //   setCurrentUser(userAuth)
-    // })
   }, [checkUserSession])
 
   return (

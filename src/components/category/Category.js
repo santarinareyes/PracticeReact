@@ -1,5 +1,4 @@
 import { withRouter } from 'react-router-dom'
-
 import * as S from './styles'
 
 const Category = ({ title, imageURL, size, history, UID, match }) => (
