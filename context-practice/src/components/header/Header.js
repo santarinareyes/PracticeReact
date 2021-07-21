@@ -7,34 +7,40 @@ import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { signOutStart } from '../../redux/user/user.actions'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
 import * as S from './styles'
+import CurrentUserContext from '../../contexts/current-user/current-user.context'
+import { useContext } from 'react'
 
-const Header = ({ currentUser, hidden, signOutStart }) => (
-  <S.HeaderContainer>
-    <S.LogoContainer to='/'>
-      <Logo />
-    </S.LogoContainer>
-    <S.NavOptions>
-      <S.OptionLink to='/products'>Products</S.OptionLink>
-      {currentUser ? (
-        <S.OptionLink as='div' onClick={signOutStart}>
-          Sign Out
-        </S.OptionLink>
-      ) : (
-        <S.OptionLink to='/signin'>Sign In</S.OptionLink>
-      )}
-      <CartIcon />
-    </S.NavOptions>
-    {!hidden && <CartDropdown />}
-  </S.HeaderContainer>
-)
+const Header = () => {
+  const currentUser = useContext(CurrentUserContext)
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
-})
+  return (
+    <S.HeaderContainer>
+      <S.LogoContainer to='/'>
+        <Logo />
+      </S.LogoContainer>
+      <S.NavOptions>
+        <S.OptionLink to='/products'>Products</S.OptionLink>
+        {currentUser ? (
+          <S.OptionLink as='div' onClick={signOutStart}>
+            Sign Out
+          </S.OptionLink>
+        ) : (
+          <S.OptionLink to='/signin'>Sign In</S.OptionLink>
+        )}
+        <CartIcon />
+      </S.NavOptions>
+      {<CartDropdown />}
+    </S.HeaderContainer>
+  )
+}
 
-const mapDispatchToProps = dispatch => ({
-  signOutStart: () => dispatch(signOutStart()),
-})
+// const mapStateToProps = createStructuredSelector({
+//   currentUser: selectCurrentUser,
+//   hidden: selectCartHidden,
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+// const mapDispatchToProps = dispatch => ({
+//   signOutStart: () => dispatch(signOutStart()),
+// })
+
+export default Header

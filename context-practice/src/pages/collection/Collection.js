@@ -1,6 +1,4 @@
-import { connect } from 'react-redux'
 import CategoryItem from '../../components/category-item/CategoryItem'
-import { selectCollection } from '../../redux/product/product.selectors'
 import './collection.scss'
 import CollectionsContext from '../../contexts/collections/collections.context'
 import { useContext } from 'react'

@@ -8,17 +8,31 @@ import Checkout from './pages/checkout/Checkout'
 import Header from './components/header/Header'
 import { selectCurrentUser } from './redux/user/user.selectors'
 import { checkUserSession } from './redux/user/user.actions'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import CurrentUserContext from './contexts/current-user/current-user.context'
+import { auth, createUserProfileDoc } from './firebase/firebase.utils'
 
-const App = ({ currentUser, checkUserSession }) => {
+const App = () => {
+  const [currentUser, setCurrentUser] = useState(undefined)
+
   useEffect(() => {
-    checkUserSession()
-  }, [checkUserSession])
+    auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDoc(userAuth)
+
+        userRef.onSnapshot(snapshot => {
+          setCurrentUser({ id: snapshot.id, ...snapshot.data() })
+        })
+      }
+    })
+  }, [])
 
   return (
     <div>
-      <Header />
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header />
+      </CurrentUserContext.Provider>
       <Switch>
         <Route exact path='/' component={Homepage} />
         <Route exact path='/checkout' component={Checkout} />
@@ -35,12 +49,12 @@ const App = ({ currentUser, checkUserSession }) => {
   )
 }
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-})
+// const mapStateToProps = createStructuredSelector({
+//   currentUser: selectCurrentUser,
+// })
 
-const mapDispatchToProps = dispatch => ({
-  checkUserSession: () => dispatch(checkUserSession()),
-})
+// const mapDispatchToProps = dispatch => ({
+//   checkUserSession: () => dispatch(checkUserSession()),
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App
