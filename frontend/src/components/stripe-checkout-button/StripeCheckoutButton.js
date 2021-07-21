@@ -13,7 +13,7 @@ const StripeCheckoutButton = ({ price }) => {
     }
 
     axios
-      .post('payment', data)
+      .post('/payment', data)
       .then(response => {
         console.log('response', response)
         alert('Payment successful')
