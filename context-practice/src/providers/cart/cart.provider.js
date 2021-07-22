@@ -4,6 +4,7 @@ import {
   removeItemFromCart,
   filterItemFromCart,
   getCartItemCount,
+  getCartTotal,
 } from '../../redux/cart/cart.utils'
 
 export const CartContext = createContext({
@@ -36,15 +37,7 @@ const CartProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    setCartTotal(
-      cartItems.reduce(
-        (prev, cartItem) => prev + cartItem.quantity * cartItem.price,
-        0
-      )
-    )
-  }, [cartItems])
-
-  useEffect(() => {
+    setCartTotal(getCartTotal(cartItems))
     setCartItemsCount(getCartItemCount(cartItems))
   }, [cartItems])
 

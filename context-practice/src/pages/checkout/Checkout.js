@@ -12,7 +12,6 @@ import { useContext } from 'react'
 
 const Checkout = () => {
   const { cartTotal, cartItems } = useContext(CartContext)
-
   return (
     <div className='checkout-page'>
       <div className='checkout-header'>

@@ -35,3 +35,9 @@ export const filterItemFromCart = (cartItems, cartItemToClear) =>
 
 export const getCartItemCount = cartItems =>
   cartItems.reduce((prev, cartItem) => prev + cartItem.quantity, 0)
+
+export const getCartTotal = cartItems =>
+  cartItems.reduce(
+    (prev, cartItem) => prev + cartItem.quantity * cartItem.price,
+    0
+  )
