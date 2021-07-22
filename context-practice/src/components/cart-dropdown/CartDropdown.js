@@ -10,7 +10,7 @@ import { CartContext } from '../../providers/cart/cart.provider'
 import { useContext } from 'react'
 
 const CartDropdown = ({ history, dispatch }) => {
-  const { cartItems } = useContext(CartContext)
+  const { cartItems, toggleHidden } = useContext(CartContext)
 
   return (
     <S.CartDropdownContainer>
@@ -26,7 +26,7 @@ const CartDropdown = ({ history, dispatch }) => {
       <CustomButton
         onClick={() => {
           history.push('/checkout')
-          dispatch(toggleCartHidden())
+          toggleHidden()
         }}
       >
         CHECKOUT

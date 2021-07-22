@@ -22,11 +22,21 @@ const CartProvider = ({ children }) => {
   const addItem = itemToAdd =>
     setCartItems(cartItemQuantity(cartItems, itemToAdd))
 
+  const removeItem = itemToRemove =>
+    setCartItems(removeItemFromCart(cartItems, itemToRemove))
+
   const toggleHidden = () => setHidden(!hidden)
 
   return (
     <CartContext.Provider
-      value={{ hidden, cartItems, toggleHidden, addItem, cartItemsCount }}
+      value={{
+        hidden,
+        cartItems,
+        toggleHidden,
+        addItem,
+        cartItemsCount,
+        removeItem,
+      }}
     >
       {children}
     </CartContext.Provider>
