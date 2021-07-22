@@ -7,36 +7,42 @@ import {
   selectCartTotal,
 } from '../../redux/cart/cart.selectors'
 import './checkout.scss'
+import { CartContext } from '../../providers/cart/cart.provider'
+import { useContext } from 'react'
 
-const Checkout = ({ cartItems, cartTotal }) => (
-  <div className='checkout-page'>
-    <div className='checkout-header'>
-      <div className='header-block'>
-        <span>Product</span>
+const Checkout = () => {
+  const { cartTotal, cartItems } = useContext(CartContext)
+
+  return (
+    <div className='checkout-page'>
+      <div className='checkout-header'>
+        <div className='header-block'>
+          <span>Product</span>
+        </div>
+        <div className='header-block'>
+          <span>Descriptions</span>
+        </div>
+        <div className='header-block'>
+          <span>Price</span>
+        </div>
+        <div className='header-block'>
+          <span>Remove</span>
+        </div>
       </div>
-      <div className='header-block'>
-        <span>Descriptions</span>
+      {cartItems.map(cartItem => (
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+      ))}
+      <div className='cart-total'>
+        <span>TOTAL: {cartTotal} SEK</span>
       </div>
-      <div className='header-block'>
-        <span>Price</span>
-      </div>
-      <div className='header-block'>
-        <span>Remove</span>
-      </div>
+      <StripeCheckoutButton price={cartTotal} />
     </div>
-    {cartItems.map(cartItem => (
-      <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-    ))}
-    <div className='cart-total'>
-      <span>TOTAL: {cartTotal} SEK</span>
-    </div>
-    <StripeCheckoutButton price={cartTotal} />
-  </div>
-)
+  )
+}
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  cartTotal: selectCartTotal,
-})
+// const mapStateToProps = createStructuredSelector({
+//   cartItems: selectCartItems,
+//   cartTotal: selectCartTotal,
+// })
 
-export default connect(mapStateToProps)(Checkout)
+export default Checkout
