@@ -1,9 +1,12 @@
 import { connect } from 'react-redux'
 import { addItemToCart } from '../../redux/cart/cart.actions'
 import * as S from './styles'
+import { CartContext } from '../../providers/cart/cart.provider'
+import { useContext } from 'react'
 
-const CategoryItem = ({ item, addItemToCart }) => {
+const CategoryItem = ({ item }) => {
   const { imageURL, name, price } = item
+  const { addItem } = useContext(CartContext)
 
   return (
     <S.CategoryItem>
@@ -15,7 +18,7 @@ const CategoryItem = ({ item, addItemToCart }) => {
       <S.AddButton
         inverted
         onClick={() => {
-          addItemToCart(item)
+          addItem(item)
         }}
       >
         Add to cart
@@ -24,8 +27,8 @@ const CategoryItem = ({ item, addItemToCart }) => {
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  addItemToCart: item => dispatch(addItemToCart(item)),
-})
+// const mapDispatchToProps = dispatch => ({
+//   addItemToCart: item => dispatch(addItemToCart(item)),
+// })
 
-export default connect(null, mapDispatchToProps)(CategoryItem)
+export default CategoryItem
