@@ -8,9 +8,9 @@ import * as S from './styles'
 import { CartContext } from '../../providers/cart/cart.provider'
 import { useContext } from 'react'
 
-const CheckoutItem = ({ cartItem, clearItem }) => {
+const CheckoutItem = ({ cartItem }) => {
   const { name, imageURL, price, quantity } = cartItem
-  const { addItem, removeItem } = useContext(CartContext)
+  const { addItem, removeItem, clearItemFromCart } = useContext(CartContext)
   return (
     <S.CheckoutItemContainer className='checkout-item'>
       <S.ImageContainer className='image-container'>
@@ -29,7 +29,7 @@ const CheckoutItem = ({ cartItem, clearItem }) => {
       <S.TextContainer className='price'>{price} SEK</S.TextContainer>
       <S.RemoveButtonContainer
         className='remove-button'
-        onClick={() => clearItem(cartItem)}
+        onClick={() => clearItemFromCart(cartItem)}
       >
         &#10005;
       </S.RemoveButtonContainer>
@@ -37,10 +37,10 @@ const CheckoutItem = ({ cartItem, clearItem }) => {
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  clearItem: item => dispatch(clearItemFromCart(item)),
-  // addItem: item => dispatch(addItemToCart(item)),
-  // removeItem: item => dispatch(removeItemFromCart(item)),
-})
+// const mapDispatchToProps = dispatch => ({
+//   // clearItem: item => dispatch(clearItemFromCart(item)),
+//   // addItem: item => dispatch(addItemToCart(item)),
+//   // removeItem: item => dispatch(removeItemFromCart(item)),
+// })
 
-export default connect(null, mapDispatchToProps)(CheckoutItem)
+export default CheckoutItem

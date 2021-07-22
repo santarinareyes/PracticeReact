@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from 'react'
 import {
   cartItemQuantity,
   removeItemFromCart,
+  filterItemFromCart,
 } from '../../redux/cart/cart.utils'
 
 export const CartContext = createContext({
@@ -29,6 +30,10 @@ const CartProvider = ({ children }) => {
 
   const toggleHidden = () => setHidden(!hidden)
 
+  const clearItemFromCart = itemToClear => {
+    setCartItems(filterItemFromCart(cartItems, itemToClear))
+  }
+
   useEffect(() => {
     setCartTotal(
       cartItems.reduce(
@@ -48,6 +53,7 @@ const CartProvider = ({ children }) => {
         cartItemsCount,
         removeItem,
         cartTotal,
+        clearItemFromCart,
       }}
     >
       {children}
