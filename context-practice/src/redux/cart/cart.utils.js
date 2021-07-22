@@ -32,3 +32,6 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
 
 export const filterItemFromCart = (cartItems, cartItemToClear) =>
   cartItems.filter(cartItem => cartItem.id !== cartItemToClear.id)
+
+export const getCartItemCount = cartItems =>
+  cartItems.reduce((prev, cartItem) => prev + cartItem.quantity, 0)

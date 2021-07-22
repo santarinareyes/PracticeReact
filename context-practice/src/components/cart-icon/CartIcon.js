@@ -7,12 +7,12 @@ import { CartContext } from '../../providers/cart/cart.provider'
 import { useContext } from 'react'
 
 const CartIcon = () => {
-  const { toggleHidden } = useContext(CartContext)
+  const { toggleHidden, cartItemsCount } = useContext(CartContext)
 
   return (
     <S.CartIconContainer onClick={toggleHidden}>
       <S.ShoppingBagIcon className='shopping-bag-icon' />
-      <S.ItemCount className='item-count'>1</S.ItemCount>
+      <S.ItemCount className='item-count'>{cartItemsCount}</S.ItemCount>
     </S.CartIconContainer>
   )
 }

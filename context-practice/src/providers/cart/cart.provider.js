@@ -3,6 +3,7 @@ import {
   cartItemQuantity,
   removeItemFromCart,
   filterItemFromCart,
+  getCartItemCount,
 } from '../../redux/cart/cart.utils'
 
 export const CartContext = createContext({
@@ -41,6 +42,10 @@ const CartProvider = ({ children }) => {
         0
       )
     )
+  }, [cartItems])
+
+  useEffect(() => {
+    setCartItemsCount(getCartItemCount(cartItems))
   }, [cartItems])
 
   return (
