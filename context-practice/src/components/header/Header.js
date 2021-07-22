@@ -8,10 +8,13 @@ import { signOutStart } from '../../redux/user/user.actions'
 import { ReactComponent as Logo } from '../../assets/logo.svg'
 import * as S from './styles'
 import CurrentUserContext from '../../contexts/current-user/current-user.context'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import CartContext from '../../contexts/cart/cart.context'
 
 const Header = () => {
   const currentUser = useContext(CurrentUserContext)
+  const [hidden, setHidden] = useState(true)
+  const toggleHidden = () => setHidden(!hidden)
 
   return (
     <S.HeaderContainer>
@@ -21,15 +24,17 @@ const Header = () => {
       <S.NavOptions>
         <S.OptionLink to='/products'>Products</S.OptionLink>
         {currentUser ? (
-          <S.OptionLink as='div' onClick={signOutStart}>
+          <S.OptionLink as='div' onClick={toggleHidden}>
             Sign Out
           </S.OptionLink>
         ) : (
           <S.OptionLink to='/signin'>Sign In</S.OptionLink>
         )}
-        <CartIcon />
+        <CartContext.Provider value={{ hidden, toggleHidden }}>
+          <CartIcon />
+        </CartContext.Provider>
       </S.NavOptions>
-      {<CartDropdown />}
+      {!hidden && <CartDropdown />}
     </S.HeaderContainer>
   )
 }
