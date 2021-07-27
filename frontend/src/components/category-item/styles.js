@@ -18,6 +18,20 @@ export const CategoryItem = styled.div`
       display: flex;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+  }
+
+  &:hover {
+    .image {
+      opacity: unset;
+    }
+
+    button {
+      display: flex;
+    }
+  }
 `
 
 export const Image = styled.div`
@@ -52,4 +66,10 @@ export const AddButton = styled(CustomButton)`
   top: 525px;
   display: none;
   opacity: 0.9;
+
+  @media screen and (max-width: 800px) {
+    display: block;
+    min-width: unset;
+    padding: 0 10px;
+  }
 `
