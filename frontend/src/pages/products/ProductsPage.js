@@ -11,7 +11,7 @@ const CollectionContainer = lazy(() =>
   import('../collection/Collection.container')
 )
 
-const ProductsPage = ({ match, fetchCollectionsStart }) => {
+const ProductsPage = ({ fetchCollectionsStart, match }) => {
   useEffect(() => {
     fetchCollectionsStart()
   }, [fetchCollectionsStart])
