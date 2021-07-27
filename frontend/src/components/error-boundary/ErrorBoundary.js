@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import * as S from './styles'
 
 class ErrorBoundary extends Component {
   constructor() {
@@ -6,6 +7,7 @@ class ErrorBoundary extends Component {
 
     this.state = {
       hasError: false,
+      imageUrl: 'https://i.imgur.com/lKJiT77.png',
     }
   }
 
@@ -20,7 +22,17 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <div>Something went wrong</div>
+      return (
+        <S.ErrorImageOverlay>
+          <S.ErrorImageContainer imageUrl={this.state.imageUrl} />
+          <S.ErrorImageText>
+            A Dog Ate this Page Your dog is cute but honestly a menace. Where
+            are my shoes? Where is my graduation certificate? Where is the
+            chocolate cake I baked for my Aunt’s birthday? And why did you take
+            your dog to the vet on that same Thursday?!
+          </S.ErrorImageText>
+        </S.ErrorImageOverlay>
+      )
     }
 
     return this.props.children
