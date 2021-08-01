@@ -23,3 +23,9 @@ export const CartItemDetails = styled.div`
 export const ItemDetail = styled.span`
   font-size: 16px;
 `
+
+export const RemoveButtonContainer = styled.div`
+  cursor: pointer;
+  align-self: center;
+  padding: 0 40px;
+`
