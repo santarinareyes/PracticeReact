@@ -13,6 +13,7 @@ export const CategoryPreviewContainer = styled.div`
 export const Heading1 = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
+  text-transform: uppercase;
 `
 
 export const PreviewItems = styled.div`
