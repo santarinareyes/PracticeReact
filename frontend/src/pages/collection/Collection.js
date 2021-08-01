@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
 import CategoryItem from '../../components/category-item/CategoryItem'
 import { selectCollection } from '../../redux/product/product.selectors'
-import './collection.scss'
+import * as S from './styles'
 
 const Collection = ({ collection }) => {
   const { title, items } = collection
   return (
-    <div className='collection-page'>
-      <h2 className='title'>{title}</h2>
-      <div className='items'>
+    <S.CollectionContainer className='collection-page'>
+      <S.Title className='title'>{title}</S.Title>
+      <S.ItemsContainer className='items'>
         {items.map(item => (
           <CategoryItem key={item.id} item={item} />
         ))}
-      </div>
-    </div>
+      </S.ItemsContainer>
+    </S.CollectionContainer>
   )
 }
 
