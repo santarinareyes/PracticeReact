@@ -23,6 +23,8 @@ const App = ({ currentUser, checkUserSession }) => {
     checkUserSession()
   }, [checkUserSession])
 
+  console.log('currentUser', !!currentUser)
+
   return (
     <div>
       <GlobalStyle />
@@ -32,18 +34,12 @@ const App = ({ currentUser, checkUserSession }) => {
           <Suspense fallback={<Spinner />}>
             <Route exact path='/' component={Homepage} />
             <Route exact path='/checkout' component={Checkout} />
+            <Route exact path='/account' component={AccountPage} />
             <Route
               exact
               path='/signin'
               render={() =>
                 currentUser ? <Redirect to='/' /> : <SignInOrSignUp />
-              }
-            />
-            <Route
-              exact
-              path='/account'
-              render={() =>
-                currentUser ? </> : <Redirect to='/' />
               }
             />
             <Route path='/products' component={ProductsPage} />
