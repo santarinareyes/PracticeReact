@@ -8,6 +8,7 @@ import { checkUserSession } from './redux/user/user.actions'
 import { GlobalStyle } from './global.styles'
 import Spinner from './components/spinner/Spinner'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
+import ContactPage from './pages/contact/Contact'
 
 const Homepage = lazy(() => import('./pages/homepage/Homepage'))
 const Checkout = lazy(() => import('./pages/checkout/Checkout'))
@@ -38,6 +39,7 @@ const App = ({ currentUser, checkUserSession }) => {
               }
             />
             <Route path='/products' component={ProductsPage} />
+            <Route path='/contact' component={ContactPage} />
           </Suspense>
         </ErrorBoundary>
       </Switch>
