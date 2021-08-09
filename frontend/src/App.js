@@ -9,6 +9,7 @@ import { GlobalStyle } from './global.styles'
 import Spinner from './components/spinner/Spinner'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
 import ContactPage from './pages/contact/Contact'
+import AccountPage from './pages/account/Account'
 
 const Homepage = lazy(() => import('./pages/homepage/Homepage'))
 const Checkout = lazy(() => import('./pages/checkout/Checkout'))
@@ -36,6 +37,13 @@ const App = ({ currentUser, checkUserSession }) => {
               path='/signin'
               render={() =>
                 currentUser ? <Redirect to='/' /> : <SignInOrSignUp />
+              }
+            />
+            <Route
+              exact
+              path='/account'
+              render={() =>
+                currentUser ? </> : <Redirect to='/' />
               }
             />
             <Route path='/products' component={ProductsPage} />

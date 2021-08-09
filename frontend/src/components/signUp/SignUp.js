@@ -14,7 +14,7 @@ const SignUp = ({ signUpStart }) => {
   }
 
   const [newUserInfo, setNewUserInfo] = useState(newUserInitial)
-  const { displayName, email, password, confirmPassword } = newUserInfo
+  const { displayName, email, password, confirmPassword, isAdmin } = newUserInfo
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -23,7 +23,13 @@ const SignUp = ({ signUpStart }) => {
       alert("Passwords don't match")
       return
     }
-    signUpStart({ email, password, displayName })
+
+    if (password.length < 6) {
+      alert('Password must containt atleast 6 characters')
+      return
+    }
+
+    signUpStart({ email, password, displayName, isAdmin })
   }
 
   const handleChange = ({ target }) => {
