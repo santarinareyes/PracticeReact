@@ -23,6 +23,7 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
 
   const handleSubmit = async e => {
     e.preventDefault()
+
     const { email, password } = accountInfo
     emailSignInStart(email, password)
   }
