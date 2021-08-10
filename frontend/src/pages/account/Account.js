@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
+import Spinner from '../../components/spinner/Spinner'
 
 const AccountPage = ({ currentUser }) => {
   const [userDetails, setUserDetails] = useState({})
@@ -16,7 +17,9 @@ const AccountPage = ({ currentUser }) => {
     setNewPasswordClicked(!newPasswordClicked)
   }
 
-  return (
+  return !currentUser ? (
+    <Spinner />
+  ) : (
     <S.AccountContainer>
       <FormInput
         onChange={handleChange}
