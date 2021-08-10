@@ -2,8 +2,11 @@ import FormInput from '../../components/form-input/FormInput'
 import * as S from './styles'
 import CustomButton from '../../components/custom-button/CustomButton'
 import { useState } from 'react'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
 
-const AccountPage = () => {
+const AccountPage = ({ currentUser }) => {
   const [userDetails, setUserDetails] = useState({})
   const [newPasswordClicked, setNewPasswordClicked] = useState(false)
 
@@ -19,7 +22,7 @@ const AccountPage = () => {
         onChange={handleChange}
         type='text'
         name='name'
-        value=''
+        value={currentUser.displayName}
         label='Name'
         required
       />
@@ -27,7 +30,7 @@ const AccountPage = () => {
         onChange={handleChange}
         type='email'
         name='email'
-        value=''
+        value={currentUser.email}
         label='Email'
         disable
       />
@@ -57,4 +60,8 @@ const AccountPage = () => {
   )
 }
 
-export default AccountPage
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+})
+
+export default connect(mapStateToProps)(AccountPage)
