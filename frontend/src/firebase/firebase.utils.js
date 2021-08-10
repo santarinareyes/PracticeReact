@@ -36,6 +36,16 @@ export const createUserProfileDoc = async (userAuth, data) => {
   return userRef
 }
 
+export const updateUserProfileDoc = async userAuth => {
+  console.log('updateUserProfileDoc', userAuth)
+  const userRef = firestore.doc(`users/${userAuth.id}`)
+  const snapShot = await userRef.update({
+    displayName: '',
+  })
+
+  console.log('snapShot', snapShot)
+}
+
 export const getUserCartRef = async userId => {
   const cartsRef = firestore.collection('carts').where('userId', '==', userId)
   const snapShot = await cartsRef.get()

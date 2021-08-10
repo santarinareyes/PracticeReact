@@ -6,15 +6,28 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import Spinner from '../../components/spinner/Spinner'
+import { updateUserProfileDoc } from '../../firebase/firebase.utils'
+
+const initialValue = {
+  newPassword: '',
+  confNewPassword: '',
+}
 
 const AccountPage = ({ currentUser }) => {
-  const [userDetails, setUserDetails] = useState({})
+  const [newPassword, setNewPassword] = useState(initialValue)
   const [newPasswordClicked, setNewPasswordClicked] = useState(false)
-
-  const handleChange = () => {}
 
   const handleNewPassword = () => {
     setNewPasswordClicked(!newPasswordClicked)
+  }
+
+  const handleChange = ({ target: { name, value } }) => {
+    setNewPassword({ ...newPassword, [name]: value })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    updateUserProfileDoc(currentUser)
   }
 
   return !currentUser ? (
@@ -27,7 +40,7 @@ const AccountPage = ({ currentUser }) => {
         name='name'
         value={currentUser.displayName}
         label='Name'
-        required
+        readOnly
       />
       <FormInput
         onChange={handleChange}
@@ -35,29 +48,31 @@ const AccountPage = ({ currentUser }) => {
         name='email'
         value={currentUser.email}
         label='Email'
-        disable
+        readOnly
       />
       <S.NewPasswordContainer clicked={!newPasswordClicked}>
         <CustomButton onClick={handleNewPassword}>Change Password</CustomButton>
       </S.NewPasswordContainer>
       <S.NewPasswordContainer clicked={newPasswordClicked}>
-        <FormInput
-          onChange={handleChange}
-          type='password'
-          name='password'
-          value=''
-          label='New Password'
-          required
-        />
-        <FormInput
-          onChange={handleChange}
-          type='password'
-          name='confirm_password'
-          value=''
-          label='Confirm Password'
-          required
-        />
-        <CustomButton>Update Password</CustomButton>
+        <form onSubmit={handleSubmit}>
+          <FormInput
+            onChange={handleChange}
+            type='password'
+            name='newPassword'
+            value={newPassword.newPassword}
+            label='New Password'
+            required
+          />
+          <FormInput
+            onChange={handleChange}
+            type='password'
+            name='confNewPassword'
+            value={newPassword.confNewPassword}
+            label='Confirm Password'
+            required
+          />
+          <CustomButton>Update Password</CustomButton>
+        </form>
       </S.NewPasswordContainer>
     </S.AccountContainer>
   )
