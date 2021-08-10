@@ -27,7 +27,7 @@ const AccountPage = ({ currentUser }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    updateUserProfileDoc(currentUser)
+    updateUserProfileDoc(newPassword.newPassword)
   }
 
   return !currentUser ? (
