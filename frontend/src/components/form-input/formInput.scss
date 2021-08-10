@@ -29,7 +29,9 @@ $main-color: black;
     }
 
     &:focus ~ .form-input-label {
-      @include shrinkLabel();
+      top: -14px;
+      font-size: 12px;
+      color: $main-color;
     }
   }
 
