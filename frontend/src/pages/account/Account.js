@@ -125,7 +125,7 @@ const AccountPage = ({
           Add Product
         </CustomButton>
         {currentUser.isAdmin && (
-          <S.FormContainer>
+          <S.FormContainer clicked={buttonClicked.addProduct}>
             <p>Admin</p>
           </S.FormContainer>
         )}
