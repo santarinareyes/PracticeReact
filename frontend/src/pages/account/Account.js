@@ -50,6 +50,7 @@ const AccountPage = ({
       return
     }
 
+    alert('Password successfully changed. Please sign in again.')
     updatePassword(password)
   }
 
