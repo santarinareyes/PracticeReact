@@ -64,3 +64,7 @@ export const newPasswordFailure = err => ({
 export const newPasswordSuccess = () => ({
   type: UserActionTypes.NEW_PASSWORD_SUCCESS,
 })
+
+export const forceLoadingFalse = () => ({
+  type: UserActionTypes.FORCE_LOADING_FALSE,
+})

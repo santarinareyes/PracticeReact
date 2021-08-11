@@ -4,16 +4,28 @@ import CustomButton from '../../components/custom-button/CustomButton'
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { selectCurrentUser } from '../../redux/user/user.selectors'
+import {
+  selectCurrentUser,
+  selectUserIsLoading,
+} from '../../redux/user/user.selectors'
 import Spinner from '../../components/spinner/Spinner'
-import { newPasswordStart } from '../../redux/user/user.actions'
+import {
+  forceLoadingFalse,
+  newPasswordStart,
+} from '../../redux/user/user.actions'
+import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 
 const initialValue = {
   password: '',
   confirmPassword: '',
 }
 
-const AccountPage = ({ currentUser, updatePassword }) => {
+const AccountPage = ({
+  currentUser,
+  updatePassword,
+  isLoading,
+  forceFalse,
+}) => {
   const [newPassword, setNewPassword] = useState(initialValue)
   const [newPasswordClicked, setNewPasswordClicked] = useState(false)
 
@@ -43,60 +55,72 @@ const AccountPage = ({ currentUser, updatePassword }) => {
 
   const { password, confirmPassword } = newPassword
 
-  return !currentUser ? (
-    <Spinner />
-  ) : (
-    <S.AccountContainer>
-      <FormInput
-        onChange={handleChange}
-        type='text'
-        name='name'
-        value={currentUser.displayName}
-        label='Name'
-        readOnly
-      />
-      <FormInput
-        onChange={handleChange}
-        type='email'
-        name='email'
-        value={currentUser.email}
-        label='Email'
-        readOnly
-      />
-      <S.NewPasswordContainer clicked={!newPasswordClicked}>
-        <CustomButton onClick={handleNewPassword}>Change Password</CustomButton>
-      </S.NewPasswordContainer>
-      <S.NewPasswordContainer clicked={newPasswordClicked}>
-        <form>
-          <FormInput
-            onChange={handleChange}
-            type='password'
-            name='password'
-            value={password}
-            label='New Password'
-            required
-          />
-          <FormInput
-            onChange={handleChange}
-            type='password'
-            name='confirmPassword'
-            value={confirmPassword}
-            label='Confirm Password'
-            required
-          />
-          <CustomButton onClick={handleSubmit}>Update Password</CustomButton>
-        </form>
-      </S.NewPasswordContainer>
-    </S.AccountContainer>
+  const offlineTimer = setTimeout(() => {
+    forceFalse()
+    clearTimeout(offlineTimer)
+  }, 1000)
+
+  if (isLoading) return <Spinner />
+  if (!isLoading && !currentUser) return <SignInOrSignUp />
+
+  return (
+    currentUser && (
+      <S.AccountContainer>
+        <FormInput
+          onChange={handleChange}
+          type='text'
+          name='name'
+          value={currentUser.displayName}
+          label='Name'
+          readOnly
+        />
+        <FormInput
+          onChange={handleChange}
+          type='email'
+          name='email'
+          value={currentUser.email}
+          label='Email'
+          readOnly
+        />
+        <S.NewPasswordContainer clicked={!newPasswordClicked}>
+          <CustomButton onClick={handleNewPassword}>
+            Change Password
+          </CustomButton>
+        </S.NewPasswordContainer>
+        <S.NewPasswordContainer clicked={newPasswordClicked}>
+          <form>
+            <FormInput
+              onChange={handleChange}
+              type='password'
+              name='password'
+              value={password}
+              label='New Password'
+              required
+            />
+            <FormInput
+              onChange={handleChange}
+              type='password'
+              name='confirmPassword'
+              value={confirmPassword}
+              label='Confirm Password'
+              required
+            />
+            <CustomButton onClick={handleSubmit}>Update Password</CustomButton>
+          </form>
+        </S.NewPasswordContainer>
+      </S.AccountContainer>
+    )
   )
 }
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  isLoading: selectUserIsLoading,
 })
 
 const mapDispatchToProps = dispatch => ({
   updatePassword: password => dispatch(newPasswordStart(password)),
+  forceFalse: () => dispatch(forceLoadingFalse()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)

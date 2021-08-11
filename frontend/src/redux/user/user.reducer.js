@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   currentUser: null,
   error: null,
   newPassword: false,
+  isLoading: true,
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -14,6 +15,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         currentUser: action.payload,
         error: null,
         newPassword: false,
+        isLoading: false,
       }
     case UserActionTypes.SIGN_OUT_SUCCESS:
     case UserActionTypes.NEW_PASSWORD_SUCCESS:
@@ -22,6 +24,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         currentUser: null,
         error: null,
         newPassword: true,
+        isLoading: false,
       }
     case UserActionTypes.SIGN_IN_FAILURE:
     case UserActionTypes.SIGN_OUT_FAILURE:
@@ -35,6 +38,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: action.payload,
         newPassword: true,
+        isLoading: false,
+      }
+    case UserActionTypes.FORCE_LOADING_FALSE:
+      return {
+        ...state,
+        error: false,
+        newPassword: false,
+        isLoading: false,
       }
     default:
       return state

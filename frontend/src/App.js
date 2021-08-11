@@ -3,7 +3,10 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import Header from './components/header/Header'
-import { selectCurrentUser } from './redux/user/user.selectors'
+import {
+  selectCurrentUser,
+  selectUserIsLoading,
+} from './redux/user/user.selectors'
 import { checkUserSession } from './redux/user/user.actions'
 import { GlobalStyle } from './global.styles'
 import Spinner from './components/spinner/Spinner'
@@ -18,10 +21,12 @@ const SignInOrSignUp = lazy(() =>
   import('./pages/signInOrSignUp/SignInOrSignUp')
 )
 
-const App = ({ currentUser, checkUserSession }) => {
+const App = ({ currentUser, checkUserSession, isLoading }) => {
   useEffect(() => {
     checkUserSession()
   }, [checkUserSession])
+
+  console.log('isLoading', isLoading)
 
   return (
     <div>
@@ -51,6 +56,7 @@ const App = ({ currentUser, checkUserSession }) => {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  isLoading: selectUserIsLoading,
 })
 
 const mapDispatchToProps = dispatch => ({

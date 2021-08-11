@@ -77,6 +77,7 @@ export function* signUp({ payload: { email, password, displayName } }) {
 export function* newPassword({ payload }) {
   try {
     yield updateUserPasswordDoc(payload)
+    yield auth.signOut()
     yield put(newPasswordSuccess())
   } catch (err) {
     yield put(newPasswordFailure(err))
