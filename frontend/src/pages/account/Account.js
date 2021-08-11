@@ -16,10 +16,17 @@ import {
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 import Spacer from '../../components/spacer/Spacer'
 
-const initialValue = {
+const buttonInitial = {
+  changePassword: false,
+  addProduct: false,
+}
+
+const newPasswordInitial = {
   password: '',
   confirmPassword: '',
 }
+
+const addProductInitial = {}
 
 const AccountPage = ({
   currentUser,
@@ -27,11 +34,12 @@ const AccountPage = ({
   isLoading,
   forceFalse,
 }) => {
-  const [newPassword, setNewPassword] = useState(initialValue)
-  const [newPasswordClicked, setNewPasswordClicked] = useState(false)
+  const [newPassword, setNewPassword] = useState(newPasswordInitial)
+  const [buttonClicked, setButtonClicked] = useState(buttonInitial)
+  const [productDetails, setProductDetails] = useState(addProductInitial)
 
-  const handleNewPassword = () => {
-    setNewPasswordClicked(!newPasswordClicked)
+  const handleButtonClicked = ({ target: { name } }) => {
+    setButtonClicked({ ...buttonClicked, [name]: !buttonClicked[name] })
   }
 
   const handleChange = ({ target: { name, value } }) => {
@@ -53,16 +61,16 @@ const AccountPage = ({
 
     alert('Password successfully changed. Please sign in again.')
     updatePassword(password)
-    setNewPassword(initialValue)
-    setNewPasswordClicked(false)
+    setNewPassword(newPasswordInitial)
+    setButtonClicked(buttonInitial)
   }
-
-  const { password, confirmPassword } = newPassword
 
   const offlineTimer = setTimeout(() => {
     forceFalse()
     clearTimeout(offlineTimer)
   }, 1000)
+
+  const { password, confirmPassword } = newPassword
 
   if (isLoading) return <Spinner />
   if (!isLoading && !currentUser) return <SignInOrSignUp />
@@ -86,16 +94,12 @@ const AccountPage = ({
           label='Email'
           readOnly
         />
-        <S.NewPasswordContainer clicked={!newPasswordClicked}>
-          <S.ButtonContainer>
-            <CustomButton onClick={handleNewPassword}>Add Product</CustomButton>
-            <Spacer h='10' />
-            <CustomButton onClick={handleNewPassword}>
-              Change Password
-            </CustomButton>
-          </S.ButtonContainer>
-        </S.NewPasswordContainer>
-        <S.NewPasswordContainer clicked={newPasswordClicked}>
+        <S.FormContainer clicked={!buttonClicked.changePassword}>
+          <CustomButton name='changePassword' onClick={handleButtonClicked}>
+            Change Password
+          </CustomButton>
+        </S.FormContainer>
+        <S.FormContainer clicked={buttonClicked.changePassword}>
           <form>
             <FormInput
               onChange={handleChange}
@@ -115,11 +119,15 @@ const AccountPage = ({
             />
             <CustomButton onClick={handleSubmit}>Update Password</CustomButton>
           </form>
-        </S.NewPasswordContainer>
+        </S.FormContainer>
+        <Spacer h='10' />
+        <CustomButton name='addProduct' onClick={handleButtonClicked}>
+          Add Product
+        </CustomButton>
         {currentUser.isAdmin && (
-          <S.AddProductContainer>
+          <S.FormContainer>
             <p>Admin</p>
-          </S.AddProductContainer>
+          </S.FormContainer>
         )}
       </S.AccountContainer>
     )
