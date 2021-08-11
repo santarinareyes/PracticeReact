@@ -14,6 +14,7 @@ import {
   newPasswordStart,
 } from '../../redux/user/user.actions'
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
+import Spacer from '../../components/spacer/Spacer'
 
 const initialValue = {
   password: '',
@@ -88,6 +89,7 @@ const AccountPage = ({
         <S.NewPasswordContainer clicked={!newPasswordClicked}>
           <S.ButtonContainer>
             <CustomButton onClick={handleNewPassword}>Add Product</CustomButton>
+            <Spacer h='10' />
             <CustomButton onClick={handleNewPassword}>
               Change Password
             </CustomButton>

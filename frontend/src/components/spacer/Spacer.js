@@ -1,3 +1,5 @@
-export const Spacer = ({ h, w }) => <div h={h} w={w} />
+import { SpacerContainer } from './styles'
+
+const Spacer = ({ h, w }) => <SpacerContainer h={h} w={w} />
 
 export default Spacer
