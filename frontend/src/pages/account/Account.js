@@ -6,14 +6,14 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import Spinner from '../../components/spinner/Spinner'
-import { updateUserProfileDoc } from '../../firebase/firebase.utils'
+import { newPasswordStart } from '../../redux/user/user.actions'
 
 const initialValue = {
-  newPassword: '',
-  confNewPassword: '',
+  password: '',
+  confirmPassword: '',
 }
 
-const AccountPage = ({ currentUser }) => {
+const AccountPage = ({ currentUser, updatePassword }) => {
   const [newPassword, setNewPassword] = useState(initialValue)
   const [newPasswordClicked, setNewPasswordClicked] = useState(false)
 
@@ -27,8 +27,21 @@ const AccountPage = ({ currentUser }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    updateUserProfileDoc(newPassword.newPassword)
+
+    if (password !== confirmPassword) {
+      alert("Passwords don't match")
+      return
+    }
+
+    if (password.length < 6) {
+      alert('Password must containt atleast 6 characters')
+      return
+    }
+
+    updatePassword(password)
   }
+
+  const { password, confirmPassword } = newPassword
 
   return !currentUser ? (
     <Spinner />
@@ -54,24 +67,24 @@ const AccountPage = ({ currentUser }) => {
         <CustomButton onClick={handleNewPassword}>Change Password</CustomButton>
       </S.NewPasswordContainer>
       <S.NewPasswordContainer clicked={newPasswordClicked}>
-        <form onSubmit={handleSubmit}>
+        <form>
           <FormInput
             onChange={handleChange}
             type='password'
-            name='newPassword'
-            value={newPassword.newPassword}
+            name='password'
+            value={password}
             label='New Password'
             required
           />
           <FormInput
             onChange={handleChange}
             type='password'
-            name='confNewPassword'
-            value={newPassword.confNewPassword}
+            name='confirmPassword'
+            value={confirmPassword}
             label='Confirm Password'
             required
           />
-          <CustomButton>Update Password</CustomButton>
+          <CustomButton onClick={handleSubmit}>Update Password</CustomButton>
         </form>
       </S.NewPasswordContainer>
     </S.AccountContainer>
@@ -82,4 +95,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 })
 
-export default connect(mapStateToProps)(AccountPage)
+const mapDispatchToProps = dispatch => ({
+  updatePassword: password => dispatch(newPasswordStart(password)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)

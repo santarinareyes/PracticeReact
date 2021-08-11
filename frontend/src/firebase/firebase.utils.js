@@ -36,7 +36,7 @@ export const createUserProfileDoc = async (userAuth, data) => {
   return userRef
 }
 
-export const updateUserProfileDoc = async newPassword => {
+export const updateUserPasswordDoc = async newPassword => {
   const user = auth.currentUser
   user.updatePassword(newPassword)
 }
