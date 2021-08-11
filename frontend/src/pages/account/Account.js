@@ -52,6 +52,8 @@ const AccountPage = ({
 
     alert('Password successfully changed. Please sign in again.')
     updatePassword(password)
+    setNewPassword(initialValue)
+    setNewPasswordClicked(false)
   }
 
   const { password, confirmPassword } = newPassword
@@ -84,9 +86,12 @@ const AccountPage = ({
           readOnly
         />
         <S.NewPasswordContainer clicked={!newPasswordClicked}>
-          <CustomButton onClick={handleNewPassword}>
-            Change Password
-          </CustomButton>
+          <S.ButtonContainer>
+            <CustomButton onClick={handleNewPassword}>Add Product</CustomButton>
+            <CustomButton onClick={handleNewPassword}>
+              Change Password
+            </CustomButton>
+          </S.ButtonContainer>
         </S.NewPasswordContainer>
         <S.NewPasswordContainer clicked={newPasswordClicked}>
           <form>
@@ -109,6 +114,11 @@ const AccountPage = ({
             <CustomButton onClick={handleSubmit}>Update Password</CustomButton>
           </form>
         </S.NewPasswordContainer>
+        {currentUser.isAdmin && (
+          <S.AddProductContainer>
+            <p>Admin</p>
+          </S.AddProductContainer>
+        )}
       </S.AccountContainer>
     )
   )

@@ -26,6 +26,7 @@ export const createUserProfileDoc = async (userAuth, data) => {
         displayName,
         email,
         createdAt,
+        isAdmin: false,
         ...data,
       })
     } catch (err) {

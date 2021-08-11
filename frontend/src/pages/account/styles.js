@@ -8,3 +8,12 @@ export const AccountContainer = styled.div`
 export const NewPasswordContainer = styled.div`
   display: ${({ clicked }) => (clicked ? 'block' : 'none')};
 `
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const AddProductContainer = styled.div`
+  display: ${({ clicked }) => (clicked ? 'block' : 'none')};
+`
