@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import FormInput from '../form-input/FormInput'
 import CustomButton from '../custom-button/CustomButton'
-import './signUp.scss'
+import * as S from './styles'
 import { signUpStart } from '../../redux/user/user.actions'
 import { connect } from 'react-redux'
 
@@ -38,7 +38,7 @@ const SignUp = ({ signUpStart }) => {
   }
 
   return (
-    <div className='sign-up'>
+    <S.Sign_Up>
       <h2 className='title'>Not yet registred?</h2>
       <span>Sign up now!</span>
       <form className='sign-up-form' onSubmit={handleSubmit}>
@@ -76,7 +76,7 @@ const SignUp = ({ signUpStart }) => {
         />
         <CustomButton>Sign Up</CustomButton>
       </form>
-    </div>
+    </S.Sign_Up>
   )
 }
 
