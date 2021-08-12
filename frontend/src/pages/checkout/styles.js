@@ -19,7 +19,7 @@ width: 100%;
 
 const HeaderBlock = styled.div`
 text-transform: capitalize;
-width: 2 3%;
+width: 23%;
 `;
 
 /* .header-block {
