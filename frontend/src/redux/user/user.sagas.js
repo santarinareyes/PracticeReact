@@ -6,6 +6,7 @@ import {
   createUserProfileDoc,
   getCurrentUser,
   updateUserPasswordDoc,
+  getUserProviderDoc,
 } from '../../firebase/firebase.utils'
 import {
   signInSuccess,
@@ -22,7 +23,14 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
     const userRef = yield call(createUserProfileDoc, userAuth, additionalData)
     const userSnapshot = yield userRef.get()
-    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }))
+    const isGoogleProvider = getUserProviderDoc()
+    yield put(
+      signInSuccess({
+        id: userSnapshot.id,
+        isGoogleProvider,
+        ...userSnapshot.data(),
+      })
+    )
   } catch (err) {
     yield put(signInFailure(err))
   }

@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   error: null,
   newPassword: false,
   isLoading: true,
+  isGoogle: null,
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {

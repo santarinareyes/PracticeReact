@@ -15,7 +15,6 @@ import {
 } from '../../redux/user/user.actions'
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 import Spacer from '../../components/spacer/Spacer'
-import { getUserProviderDoc } from '../../firebase/firebase.utils'
 
 const buttonInitial = {
   changePassword: false,
@@ -40,6 +39,13 @@ const AccountPage = ({
   const [productDetails, setProductDetails] = useState(addProductInitial)
 
   const handleButtonClicked = ({ target: { name } }) => {
+    if (currentUser.isGoogleProvider && name === 'changePassword') {
+      alert(
+        'You are logged in with Google authentication and can only change your password through Google.'
+      )
+      return
+    }
+
     if (buttonClicked.changePassword) {
       setButtonClicked({
         ...buttonClicked,
@@ -49,7 +55,6 @@ const AccountPage = ({
       return
     }
 
-    getUserProviderDoc()
     setButtonClicked({
       ...buttonClicked,
       [name]: !buttonClicked[name],
