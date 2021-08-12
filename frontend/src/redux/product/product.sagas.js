@@ -28,5 +28,5 @@ export function* fetchCollectionsStart() {
 }
 
 export function* productSagas() {
-  yield all([call(fetchCollectionsSuccess)])
+  yield all([call(fetchCollectionsStart)])
 }

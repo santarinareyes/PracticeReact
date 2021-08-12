@@ -15,7 +15,7 @@ import {
 } from '../../redux/user/user.actions'
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 import Spacer from '../../components/spacer/Spacer'
-import { getProductsCollectionDoc } from '../../firebase/firebase.utils'
+import Admin from '../../components/admin/Admin'
 
 const buttonInitial = {
   changePassword: false,
@@ -144,10 +144,10 @@ const AccountPage = ({
           <>
             <Spacer h='10' />
             <CustomButton name='addProduct' onClick={handleButtonClicked}>
-              Add Product
+              Product Manager
             </CustomButton>
             <S.FormContainer clicked={buttonClicked.addProduct}>
-              <FormInput />
+              <Admin />
             </S.FormContainer>
           </>
         )}
