@@ -26,8 +26,6 @@ const App = ({ currentUser, checkUserSession, isLoading }) => {
     checkUserSession()
   }, [checkUserSession])
 
-  console.log('isLoading', isLoading)
-
   return (
     <div>
       <GlobalStyle />

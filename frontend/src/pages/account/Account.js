@@ -15,6 +15,7 @@ import {
 } from '../../redux/user/user.actions'
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 import Spacer from '../../components/spacer/Spacer'
+import { getUserProviderDoc } from '../../firebase/firebase.utils'
 
 const buttonInitial = {
   changePassword: false,
@@ -48,6 +49,7 @@ const AccountPage = ({
       return
     }
 
+    getUserProviderDoc()
     setButtonClicked({
       ...buttonClicked,
       [name]: !buttonClicked[name],
