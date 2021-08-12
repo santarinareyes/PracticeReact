@@ -1,12 +1,13 @@
 import SignIn from '../../components/signIn/SignIn'
 import SignUp from '../../components/signUp/SignUp'
-import './signInOrSignUp.scss'
+import * as S from './styles';
+//import './signInOrSignUp.scss'
 
 const SignInOrSignUp = () => (
-  <div className='signInOrSignUp'>
+  <S.signInOrSignUp>
     <SignIn />
     <SignUp />
-  </div>
+    </S.signInOrSignUp>
 )
 
 export default SignInOrSignUp
