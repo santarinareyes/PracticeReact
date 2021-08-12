@@ -6,7 +6,7 @@ import {
   emailSignInStart,
 } from '../../redux/user/user.actions'
 import { connect } from 'react-redux'
-import './signIn.scss'
+import * as S from './styles';
 
 const SignIn = ({ googleSignInStart, emailSignInStart }) => {
   const signInInitial = {
@@ -28,8 +28,8 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
   }
 
   return (
-    <div className='sign-in'>
-      <h1 className='title'>Already have an account?</h1>
+    <S.Sign_In>
+      <S.TitleHeader>Already have an account?</S.TitleHeader>
       <span>Sign in below</span>
 
       <form onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ const SignIn = ({ googleSignInStart, emailSignInStart }) => {
           </CustomButton>
         </div>
       </form>
-    </div>
+    </S.Sign_In>
   )
 }
 
