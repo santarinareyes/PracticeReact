@@ -19,7 +19,7 @@ import Admin from '../../components/admin/Admin'
 
 const buttonInitial = {
   changePassword: false,
-  addProduct: false,
+  productManager: false,
 }
 
 const newPasswordInitial = {
@@ -145,10 +145,10 @@ const AccountPage = ({
         {currentUser.isAdmin && (
           <>
             <Spacer h='10' />
-            <CustomButton name='addProduct' onClick={handleButtonClicked}>
+            <CustomButton name='productManager' onClick={handleButtonClicked}>
               Product Manager
             </CustomButton>
-            <S.FormContainer clicked={buttonClicked.addProduct}>
+            <S.FormContainer clicked={buttonClicked.productManager}>
               <Admin />
             </S.FormContainer>
           </>

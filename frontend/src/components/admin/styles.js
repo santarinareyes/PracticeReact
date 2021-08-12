@@ -13,5 +13,8 @@ export const ButtonContainer = styled.div`
 `
 
 export const ProductsContainer = styled.div`
-  display: none;
+  display: ${({ clicked }) => (clicked ? 'flex' : 'none')};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `

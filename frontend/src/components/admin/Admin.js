@@ -1,13 +1,26 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { createStructuredSelector } from 'reselect'
-import { selectDirectoryCategories } from '../../redux/directory/directory.selectors'
 import { fetchCollectionsStart } from '../../redux/product/product.actions'
 import CustomButton from '../custom-button/CustomButton'
 import Spacer from '../spacer/Spacer'
 import * as S from './styles'
+import AllProductsContainer from './all-products/AllProducts.container'
 
-const Admin = ({ fetchCollectionsStart, categories }) => {
+const buttonInitial = {
+  allProducts: false,
+  addProduct: false,
+}
+
+const Admin = ({ fetchCollectionsStart }) => {
+  const [buttonClicked, setButtonClicked] = useState(buttonInitial)
+
+  const handleButtonClicked = ({ target: { name } }) => {
+    setButtonClicked({
+      ...buttonClicked,
+      [name]: !buttonClicked[name],
+    })
+  }
+
   useEffect(() => {
     fetchCollectionsStart()
   }, [fetchCollectionsStart])
@@ -15,24 +28,23 @@ const Admin = ({ fetchCollectionsStart, categories }) => {
   return (
     <S.AdminContainer>
       <S.ButtonContainer>
-        <CustomButton>All Products</CustomButton>
+        <CustomButton name='allProducts' onClick={handleButtonClicked}>
+          All Products
+        </CustomButton>
         <Spacer w='10' />
-        <CustomButton>Add Product</CustomButton>
+        <CustomButton name='addProduct' onClick={handleButtonClicked}>
+          Add Product
+        </CustomButton>
       </S.ButtonContainer>
-
-      {categories.map(({ id, title }) => (
-        <h1 key={id}>{title}</h1>
-      ))}
+      <S.ProductsContainer clicked={buttonClicked.allProducts}>
+        <AllProductsContainer />
+      </S.ProductsContainer>
     </S.AdminContainer>
   )
 }
-
-const mapStateToProps = createStructuredSelector({
-  categories: selectDirectoryCategories,
-})
 
 const mapDispatchToProps = dispatch => ({
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Admin)
+export default connect(null, mapDispatchToProps)(Admin)
