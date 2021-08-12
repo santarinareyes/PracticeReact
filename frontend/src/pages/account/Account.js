@@ -117,9 +117,11 @@ const AccountPage = ({
           readOnly
         />
         <S.FormContainer clicked={!buttonClicked.changePassword}>
-          <CustomButton name='changePassword' onClick={handleButtonClicked}>
-            Change Password
-          </CustomButton>
+          <S.ButtonContainer>
+            <CustomButton name='changePassword' onClick={handleButtonClicked}>
+              Change Password
+            </CustomButton>
+          </S.ButtonContainer>
         </S.FormContainer>
         <S.FormContainer clicked={buttonClicked.changePassword}>
           <form>
@@ -145,9 +147,11 @@ const AccountPage = ({
         {currentUser.isAdmin && (
           <>
             <Spacer h='10' />
-            <CustomButton name='productManager' onClick={handleButtonClicked}>
-              Product Manager
-            </CustomButton>
+            <S.ButtonContainer>
+              <CustomButton name='productManager' onClick={handleButtonClicked}>
+                Product Manager
+              </CustomButton>
+            </S.ButtonContainer>
             <S.FormContainer clicked={buttonClicked.productManager}>
               <Admin />
             </S.FormContainer>
