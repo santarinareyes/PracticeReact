@@ -2,13 +2,14 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { selectCollectionsForPreview } from '../../../redux/product/product.selectors'
 import ProductItem from './product-item/ProductItem'
+import { AllProductsContainer } from './styles'
 
 const AllProducts = ({ collections }) => (
-  <div>
-    {collections.map(collection => (
-      <ProductItem collection={collection} />
+  <AllProductsContainer>
+    {collections.map(({ id, ...otherProps }) => (
+      <ProductItem key={id} collection={otherProps} />
     ))}
-  </div>
+  </AllProductsContainer>
 )
 
 const mapStateToProps = createStructuredSelector({

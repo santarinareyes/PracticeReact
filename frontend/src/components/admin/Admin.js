@@ -4,7 +4,7 @@ import { fetchCollectionsStart } from '../../redux/product/product.actions'
 import CustomButton from '../custom-button/CustomButton'
 import Spacer from '../spacer/Spacer'
 import * as S from './styles'
-import AllProductsContainer from './all-products/AllProducts.container'
+import { default as AllProducts } from './all-products/AllProducts.container'
 
 const buttonInitial = {
   allProducts: false,
@@ -37,7 +37,7 @@ const Admin = ({ fetchCollectionsStart }) => {
         </CustomButton>
       </S.ButtonContainer>
       <S.ProductsContainer clicked={buttonClicked.allProducts}>
-        <AllProductsContainer />
+        <AllProducts />
       </S.ProductsContainer>
     </S.AdminContainer>
   )
