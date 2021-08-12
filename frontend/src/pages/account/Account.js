@@ -140,13 +140,15 @@ const AccountPage = ({
           </form>
         </S.FormContainer>
         <Spacer h='10' />
-        <CustomButton name='addProduct' onClick={handleButtonClicked}>
-          Add Product
-        </CustomButton>
         {currentUser.isAdmin && (
-          <S.FormContainer clicked={buttonClicked.addProduct}>
-            <p>Admin</p>
-          </S.FormContainer>
+          <>
+            <CustomButton name='addProduct' onClick={handleButtonClicked}>
+              Add Product
+            </CustomButton>
+            <S.FormContainer clicked={buttonClicked.addProduct}>
+              <p>Admin</p>
+            </S.FormContainer>
+          </>
         )}
       </S.AccountContainer>
     )
