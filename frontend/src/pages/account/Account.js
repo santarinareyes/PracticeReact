@@ -39,7 +39,19 @@ const AccountPage = ({
   const [productDetails, setProductDetails] = useState(addProductInitial)
 
   const handleButtonClicked = ({ target: { name } }) => {
-    setButtonClicked({ ...buttonClicked, [name]: !buttonClicked[name] })
+    if (buttonClicked.changePassword) {
+      setButtonClicked({
+        ...buttonClicked,
+        [name]: !buttonClicked[name],
+        changePassword: false,
+      })
+      return
+    }
+
+    setButtonClicked({
+      ...buttonClicked,
+      [name]: !buttonClicked[name],
+    })
   }
 
   const handleChange = ({ target: { name, value } }) => {
