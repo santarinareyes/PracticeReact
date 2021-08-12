@@ -1,7 +1,7 @@
 import FormInput from '../../components/form-input/FormInput'
 import * as S from './styles'
 import CustomButton from '../../components/custom-button/CustomButton'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import {
@@ -38,6 +38,13 @@ const AccountPage = ({
   const [newPassword, setNewPassword] = useState(newPasswordInitial)
   const [buttonClicked, setButtonClicked] = useState(buttonInitial)
   const [productDetails, setProductDetails] = useState(addProductInitial)
+
+  useEffect(() => {
+    const offlineTimer = setTimeout(() => {
+      forceFalse()
+      clearTimeout(offlineTimer)
+    }, 1000)
+  }, [])
 
   const handleButtonClicked = ({ target: { name } }) => {
     if (currentUser.isGoogleProvider && name === 'changePassword') {
@@ -84,11 +91,6 @@ const AccountPage = ({
     setNewPassword(newPasswordInitial)
     setButtonClicked(buttonInitial)
   }
-
-  const offlineTimer = setTimeout(() => {
-    forceFalse()
-    clearTimeout(offlineTimer)
-  }, 1000)
 
   const { password, confirmPassword } = newPassword
 
