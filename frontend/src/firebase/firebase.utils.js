@@ -37,19 +37,6 @@ export const createUserProfileDoc = async (userAuth, data) => {
   return userRef
 }
 
-export const updateUserPasswordDoc = newPassword => {
-  const user = auth.currentUser
-  user.updatePassword(newPassword)
-}
-
-export const getUserProviderDoc = () => {
-  const user = auth.currentUser
-
-  if (user) {
-    return user.providerData[0].providerId === 'google.com'
-  }
-}
-
 export const getUserCartRef = async userId => {
   const cartsRef = firestore.collection('carts').where('userId', '==', userId)
   const snapShot = await cartsRef.get()

@@ -15,6 +15,7 @@ import {
 } from '../../redux/user/user.actions'
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 import Spacer from '../../components/spacer/Spacer'
+import { getProductsCollectionDoc } from '../../firebase/firebase.utils'
 
 const buttonInitial = {
   changePassword: false,
@@ -139,14 +140,14 @@ const AccountPage = ({
             <CustomButton onClick={handleSubmit}>Update Password</CustomButton>
           </form>
         </S.FormContainer>
-        <Spacer h='10' />
         {currentUser.isAdmin && (
           <>
+            <Spacer h='10' />
             <CustomButton name='addProduct' onClick={handleButtonClicked}>
               Add Product
             </CustomButton>
             <S.FormContainer clicked={buttonClicked.addProduct}>
-              <p>Admin</p>
+              <FormInput />
             </S.FormContainer>
           </>
         )}
