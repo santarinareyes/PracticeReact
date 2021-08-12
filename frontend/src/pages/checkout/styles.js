@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const CheckoutWrapper = styled.div`
+export const CheckoutWrapper = styled.div`
 width: 55%;
   min-height: 90vh;
   display: flex;
@@ -9,7 +9,7 @@ width: 55%;
   margin: 50px auto 0;
 `;
 
-const CheckoutHeader = styled.div`
+export const CheckoutHeader = styled.div`
 width: 100%;
     padding: 10px 0;
     display: flex;
@@ -17,7 +17,7 @@ width: 100%;
     border-bottom: 1px solid darkgrey;
 `;
 
-const HeaderBlock = styled.div`
+export const HeaderBlock = styled.div`
 text-transform: capitalize;
 width: 23%;
 `;
@@ -31,15 +31,14 @@ width: 23%;
     }
   } */
 
-const CheckoutButton = styled.div`
+  export const CheckoutButton = styled.div`
 margin: 10px 0 50px auto;
 `;
 
-const CartTotal = styled.div`
+export const CartTotal = styled.div`
 margin-top: 30px;
     margin-left: auto;
     font-size: 36px;
 `;
 
 
-export { CheckoutWrapper, CheckoutHeader, HeaderBlock, CheckoutButton, CartTotal }
