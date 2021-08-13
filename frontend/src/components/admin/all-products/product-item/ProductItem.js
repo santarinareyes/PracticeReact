@@ -15,8 +15,8 @@ const ProductItem = ({ collection: { items, title } }) => {
       <S.Title>{title}</S.Title>
       <div>
         {items.map(({ name, id, price, imageURL }) => (
-          <>
-            <S.ProductInfoContainer key={id}>
+          <div key={id}>
+            <S.ProductInfoContainer>
               <S.Text>{name}</S.Text>
               <S.Text>Price: {price} SEK</S.Text>
               <S.Text hover onClick={handleModal}>
@@ -37,7 +37,7 @@ const ProductItem = ({ collection: { items, title } }) => {
                 </S.RemoveButtonContainer>
               </S.ModalContainer>
             </Modal>
-          </>
+          </div>
         ))}
       </div>
     </div>

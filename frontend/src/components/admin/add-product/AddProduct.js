@@ -57,7 +57,9 @@ const AddProduct = ({ collections, addProduct }) => {
           <option value='none'>Choose collection</option>
           {collections &&
             collections.map(({ title }) => (
-              <option value={title}>{title}</option>
+              <option key={title} value={title}>
+                {title}
+              </option>
             ))}
         </select>
       </div>
