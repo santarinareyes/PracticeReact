@@ -1,5 +1,4 @@
 import './formInput.scss'
-import * as S from './styles'
 
 const FormInput = ({ handleChange, label, readOnly, ...otherProps }) => (
   <div className={`group ${readOnly ? 'readOnly' : ''}`}>

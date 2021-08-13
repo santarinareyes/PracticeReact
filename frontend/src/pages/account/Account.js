@@ -41,7 +41,7 @@ const AccountPage = ({
       forceFalse()
       clearTimeout(offlineTimer)
     }, 1000)
-  }, [])
+  }, [forceFalse])
 
   const handleButtonClicked = ({ target: { name } }) => {
     if (currentUser.isGoogleProvider && name === 'changePassword') {
