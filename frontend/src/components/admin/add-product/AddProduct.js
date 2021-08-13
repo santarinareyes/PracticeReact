@@ -31,8 +31,6 @@ const AddProduct = ({ collections, addProduct, errorMessage }) => {
     setProductInfo({ ...productInfo, [name]: value })
   }
 
-  console.log('errorMessage', errorMessage)
-
   const handleSubmit = e => {
     e.preventDefault()
 
@@ -93,15 +91,9 @@ const AddProduct = ({ collections, addProduct, errorMessage }) => {
         label='Image URL'
         required
       />
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          paddingBottom: '40px',
-        }}
-      >
+      <S.ButtonContainer>
         <CustomButton onClick={handleSubmit}>Submit Product</CustomButton>
-      </div>
+      </S.ButtonContainer>
     </S.AddProductContainer>
   )
 }

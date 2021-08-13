@@ -17,3 +17,9 @@ export const SelectCollectionContainer = styled.div`
 export const SelectDropdown = styled.select`
   padding: 10px;
 `
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+`
