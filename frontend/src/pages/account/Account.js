@@ -27,8 +27,6 @@ const newPasswordInitial = {
   confirmPassword: '',
 }
 
-const addProductInitial = {}
-
 const AccountPage = ({
   currentUser,
   updatePassword,
@@ -37,7 +35,6 @@ const AccountPage = ({
 }) => {
   const [newPassword, setNewPassword] = useState(newPasswordInitial)
   const [buttonClicked, setButtonClicked] = useState(buttonInitial)
-  const [productDetails, setProductDetails] = useState(addProductInitial)
 
   useEffect(() => {
     const offlineTimer = setTimeout(() => {
