@@ -5,17 +5,18 @@ import { selectCollectionsForPreview } from '../../../redux/product/product.sele
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { getCollectionRef } from '../../../firebase/firebase.utils'
+import { addProduct } from '../../../redux/product/product.actions'
 
 const initialState = {
   title: '',
   name: '',
   price: '',
-  image: '',
+  imageURL: '',
 }
 
-const AddProduct = ({ collections }) => {
+const AddProduct = ({ collections, addProduct }) => {
   const [productInfo, setProductInfo] = useState(initialState)
-  const { title, name, price, image } = productInfo
+  const { title, name, price, imageURL } = productInfo
 
   const handleChange = ({ target: { name, value } }) => {
     setProductInfo({ ...productInfo, [name]: value })
@@ -23,10 +24,25 @@ const AddProduct = ({ collections }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    getCollectionRef(title)
-  }
 
-  console.log('productInfo', productInfo)
+    const generateUUID = () => {
+      return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (
+          c ^
+          (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+        ).toString(16)
+      )
+    }
+
+    const items = {
+      id: generateUUID(),
+      imageURL,
+      name,
+      price,
+    }
+
+    addProduct({ title, items })
+  }
 
   return (
     <div style={{ width: '100%' }}>
@@ -64,8 +80,8 @@ const AddProduct = ({ collections }) => {
       <FormInput
         onChange={handleChange}
         type='text'
-        name='image'
-        value={image}
+        name='imageURL'
+        value={imageURL}
         label='Image URL'
         required
       />
@@ -86,4 +102,8 @@ const mapStateToProps = createStructuredSelector({
   collections: selectCollectionsForPreview,
 })
 
-export default connect(mapStateToProps)(AddProduct)
+const mapDispatchToProps = dispatch => ({
+  addProduct: payload => dispatch(addProduct(payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProduct)

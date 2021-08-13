@@ -32,3 +32,8 @@ export const fetchCollectionsStartAsync = () => {
       .catch(error => dispatch(fetchCollectionsFailure(error.message)))
   }
 }
+
+export const addProduct = payload => ({
+  type: ProductActionTypes.ADD_PRODUCT,
+  payload,
+})

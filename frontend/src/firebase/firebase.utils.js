@@ -56,8 +56,6 @@ export const getCollectionRef = async collectionTitle => {
     .where('title', '==', collectionTitle)
   const snapShot = await collectionRef.get()
 
-  console.log('snapShot', snapShot)
-
   if (snapShot.empty) {
     const collectionDocRef = firestore.collection('collections').doc()
     await collectionDocRef.set({ title: collectionTitle, items: [] })

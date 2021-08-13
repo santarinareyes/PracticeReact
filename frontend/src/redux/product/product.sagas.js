@@ -2,12 +2,25 @@ import { takeLatest, call, put, all } from 'redux-saga/effects'
 import {
   convertCollectionsSnapshotToMap,
   firestore,
+  getCollectionRef,
 } from '../../firebase/firebase.utils'
 import {
   fetchCollectionsFailure,
   fetchCollectionsSuccess,
 } from './product.actions'
 import ProductActionTypes from './product.types'
+
+export function* updateCollectionInFirebase({ payload: { title, items } }) {
+  try {
+    const collectionRef = yield getCollectionRef(title)
+    const collectionSnapshot = yield collectionRef.get()
+    const itemsArray = yield collectionSnapshot.data().items
+    yield itemsArray.push(items)
+    yield collectionRef.update({ itemsArray })
+  } catch (err) {
+    console.log(err)
+  }
+}
 
 export function* fetchCollectionsAsync() {
   try {
@@ -27,6 +40,10 @@ export function* fetchCollectionsStart() {
   )
 }
 
+export function* onAddProduct() {
+  yield takeLatest(ProductActionTypes.ADD_PRODUCT, updateCollectionInFirebase)
+}
+
 export function* productSagas() {
-  yield all([call(fetchCollectionsStart)])
+  yield all([call(fetchCollectionsStart), call(onAddProduct)])
 }
