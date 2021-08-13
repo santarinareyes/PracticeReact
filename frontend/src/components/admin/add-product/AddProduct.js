@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import { addProduct } from '../../../redux/product/product.actions'
+import * as S from './styles'
 
 const initialState = {
   title: '',
@@ -55,15 +56,10 @@ const AddProduct = ({ collections, addProduct, errorMessage }) => {
   }
 
   return (
-    <div style={{ width: '100%' }}>
-      <h2 style={{ display: 'flex', justifyContent: 'center' }}>Add Product</h2>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <select
-          style={{ padding: '10px' }}
-          onChange={handleChange}
-          id='title'
-          name='title'
-        >
+    <S.AddProductContainer>
+      <S.Header2>Add Product</S.Header2>
+      <S.SelectCollectionContainer>
+        <S.SelectDropdown onChange={handleChange} id='title' name='title'>
           <option value='none'>Choose collection</option>
           {collections &&
             collections.map(({ title }) => (
@@ -71,8 +67,8 @@ const AddProduct = ({ collections, addProduct, errorMessage }) => {
                 {title}
               </option>
             ))}
-        </select>
-      </div>
+        </S.SelectDropdown>
+      </S.SelectCollectionContainer>
       <FormInput
         onChange={handleChange}
         type='text'
@@ -106,7 +102,7 @@ const AddProduct = ({ collections, addProduct, errorMessage }) => {
       >
         <CustomButton onClick={handleSubmit}>Submit Product</CustomButton>
       </div>
-    </div>
+    </S.AddProductContainer>
   )
 }
 
