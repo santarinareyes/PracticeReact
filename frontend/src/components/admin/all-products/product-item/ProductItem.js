@@ -11,6 +11,7 @@ const ProductItem = ({ collection: { items, title } }) => (
             <S.Text>{name}</S.Text>
             <S.Text>Price: {price} SEK</S.Text>
             <S.Text>View image</S.Text>
+            <S.Text>Edit</S.Text>
           </S.ProductInfoContainer>
           <Spacer h='10' />
         </>
