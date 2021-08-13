@@ -18,3 +18,7 @@ export const ProductsContainer = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+export const AddProductContainer = styled.div`
+  display: ${({ clicked }) => (clicked ? 'flex' : 'none')};
+`

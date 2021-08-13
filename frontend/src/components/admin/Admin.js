@@ -5,6 +5,7 @@ import CustomButton from '../custom-button/CustomButton'
 import Spacer from '../spacer/Spacer'
 import * as S from './styles'
 import { default as AllProducts } from './all-products/AllProducts.container'
+import AddProduct from './add-product/AddProduct'
 
 const buttonInitial = {
   allProducts: false,
@@ -36,6 +37,9 @@ const Admin = ({ fetchCollectionsStart }) => {
           Add Product
         </CustomButton>
       </S.ButtonContainer>
+      <S.AddProductContainer clicked={buttonClicked.addProduct}>
+        <AddProduct />
+      </S.AddProductContainer>
       <S.ProductsContainer clicked={buttonClicked.allProducts}>
         <AllProducts />
       </S.ProductsContainer>

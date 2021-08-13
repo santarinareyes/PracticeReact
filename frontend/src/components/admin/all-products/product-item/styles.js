@@ -8,20 +8,20 @@ export const Title = styled.h2`
 
 export const ProductInfoContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border-bottom: 1px solid grey;
 `
 
 export const Text = styled.h3`
   padding: 0;
   margin: 0;
-  width: 24%;
   display: flex;
   justify-content: center;
   font-size: 16px;
 
   &:hover {
     cursor: ${({ hover }) => (hover ? 'pointer' : '')};
+    color: ${({ hover }) => (hover ? 'grey' : '')};
   }
 
   @media screen and (min-width: 800px) {
