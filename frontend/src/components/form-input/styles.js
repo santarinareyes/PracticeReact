@@ -1,4 +1,20 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+
+const mainColor = 'black'
+const subColor = 'grey'
+
+const shrinkLabel = css`
+  top: -14px;
+  font-size: 12px;
+  color: ${mainColor};
+`
+
+const webkitStyles = css`
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+`
 
 export const FormInputContainer = styled.div`
   position: relative;
@@ -12,14 +28,14 @@ export const FormInputContainer = styled.div`
 export const FormInput = styled.input`
   background: none;
   background-color: white;
-  color: $sub-color;
+  color: ${subColor};
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
   width: 100%;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid $sub-color;
+  border-bottom: 1px solid ${subColor};
   margin: 25px 0;
 
   &:focus {
@@ -27,7 +43,7 @@ export const FormInput = styled.input`
   }
 
   &:focus ~ .form-input-label {
-    @include shrinkLabel();
+    ${shrinkLabel};
   }
 
   .form-input-label {
@@ -41,7 +57,7 @@ export const FormInput = styled.input`
     transition: 300ms ease all;
 
     &.shrink {
-      @include shrinkLabel();
+      ${shrinkLabel};
     }
   }
 `

@@ -14,7 +14,7 @@ const SignUp = ({ signUpStart }) => {
   }
 
   const [newUserInfo, setNewUserInfo] = useState(newUserInitial)
-  const { displayName, email, password, confirmPassword, isAdmin } = newUserInfo
+  const { displayName, email, password, confirmPassword } = newUserInfo
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -29,7 +29,7 @@ const SignUp = ({ signUpStart }) => {
       return
     }
 
-    signUpStart({ email, password, displayName, isAdmin })
+    signUpStart({ email, password, displayName })
   }
 
   const handleChange = ({ target }) => {

@@ -50,3 +50,21 @@ export const signUpFailure = err => ({
   type: UserActionTypes.SIGN_UP_FAILURE,
   payload: err,
 })
+
+export const newPasswordStart = newPassword => ({
+  type: UserActionTypes.NEW_PASSWORD_START,
+  payload: newPassword,
+})
+
+export const newPasswordFailure = err => ({
+  type: UserActionTypes.NEW_PASSWORD_FAILURE,
+  payload: err,
+})
+
+export const newPasswordSuccess = () => ({
+  type: UserActionTypes.NEW_PASSWORD_SUCCESS,
+})
+
+export const forceLoadingFalse = () => ({
+  type: UserActionTypes.FORCE_LOADING_FALSE,
+})

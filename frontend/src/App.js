@@ -23,8 +23,6 @@ const App = ({ currentUser, checkUserSession }) => {
     checkUserSession()
   }, [checkUserSession])
 
-  console.log('currentUser', !!currentUser)
-
   return (
     <div>
       <GlobalStyle />
