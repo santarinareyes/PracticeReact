@@ -30,6 +30,7 @@ const ProductItem = ({ collection: { items, title } }) => {
               onRequestClose={handleModal}
               contentLabel={name}
               style={S.modalStyles}
+              ariaHideApp={false}
             >
               <S.ModalContainer imageURL={imageURL}>
                 <S.RemoveButtonContainer onClick={handleModal}>

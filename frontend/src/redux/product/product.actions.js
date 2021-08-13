@@ -34,6 +34,10 @@ export const fetchCollectionsStartAsync = () => {
 }
 
 export const addProduct = payload => ({
-  type: ProductActionTypes.ADD_PRODUCT,
+  type: ProductActionTypes.ADD_PRODUCT_START,
   payload,
+})
+
+export const addProductSuccess = () => ({
+  type: ProductActionTypes.ADD_PRODUCT_SUCCESS,
 })
