@@ -2,12 +2,18 @@ import { useState } from 'react'
 import Spacer from '../../../spacer/Spacer'
 import * as S from './styles'
 import Modal from 'react-modal'
+import { connect } from 'react-redux'
+import { deleteProduct } from '../../../../redux/product/product.actions'
 
-const ProductItem = ({ collection: { items, title } }) => {
+const ProductItem = ({ collection: { items, title }, deleteProduct }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const handleModal = () => {
     setModalIsOpen(!modalIsOpen)
+  }
+
+  const handleDelete = ({ target: { id } }) => {
+    deleteProduct({ collection: title, productId: id })
   }
 
   return (
@@ -22,7 +28,9 @@ const ProductItem = ({ collection: { items, title } }) => {
               <S.Text hover onClick={handleModal}>
                 View image
               </S.Text>
-              <S.Text hover>Edit</S.Text>
+              <S.Text id={id} hover onClick={handleDelete}>
+                Delete
+              </S.Text>
             </S.ProductInfoContainer>
             <Spacer h='10' />
             <Modal
@@ -45,4 +53,8 @@ const ProductItem = ({ collection: { items, title } }) => {
   )
 }
 
-export default ProductItem
+const mapDispatchToProps = dispatch => ({
+  deleteProduct: payload => dispatch(deleteProduct(payload)),
+})
+
+export default connect(null, mapDispatchToProps)(ProductItem)

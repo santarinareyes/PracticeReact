@@ -46,3 +46,16 @@ export const addProductFailure = payload => ({
   type: ProductActionTypes.ADD_PRODUCT_FAILURE,
   payload,
 })
+
+export const deleteProduct = payload => ({
+  type: ProductActionTypes.DELETE_PRODUCT_START,
+  payload,
+})
+
+export const deleteProductSuccess = () => ({
+  type: ProductActionTypes.DELETE_PRODUCT_SUCCESS,
+})
+
+export const deleteProductFailure = () => ({
+  type: ProductActionTypes.DELETE_PRODUCT_FAILURE,
+})

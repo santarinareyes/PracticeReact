@@ -7,6 +7,7 @@ import {
 import {
   addProductFailure,
   addProductSuccess,
+  deleteProductSuccess,
   fetchCollectionsFailure,
   fetchCollectionsSuccess,
 } from './product.actions'
@@ -36,6 +37,25 @@ export function* updateCollectionInFirebase({ payload: { title, items } }) {
   }
 }
 
+export function* deleteItemFromFirebase({
+  payload: { collection, productId },
+}) {
+  try {
+    const collectionRef = yield getCollectionRef(collection)
+    const collectionSnapshot = yield collectionRef.get()
+    const itemsArray = yield collectionSnapshot.data().items
+
+    const newArray = yield itemsArray.filter(
+      itemInFirebase => itemInFirebase.id.toString() !== productId.toString()
+    )
+
+    yield collectionRef.update({ items: newArray })
+    yield put(deleteProductSuccess())
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export function* fetchCollectionsAsync() {
   try {
     const collectionRef = firestore.collection('collections')
@@ -52,6 +72,7 @@ export function* fetchCollectionsStart() {
     [
       ProductActionTypes.FETCH_COLLECTIONS_START,
       ProductActionTypes.ADD_PRODUCT_SUCCESS,
+      ProductActionTypes.DELETE_PRODUCT_SUCCESS,
     ],
     fetchCollectionsAsync
   )
@@ -64,6 +85,17 @@ export function* onAddProduct() {
   )
 }
 
+export function* onDeleteProduct() {
+  yield takeLatest(
+    ProductActionTypes.DELETE_PRODUCT_START,
+    deleteItemFromFirebase
+  )
+}
+
 export function* productSagas() {
-  yield all([call(fetchCollectionsStart), call(onAddProduct)])
+  yield all([
+    call(fetchCollectionsStart),
+    call(onAddProduct),
+    call(onDeleteProduct),
+  ])
 }
