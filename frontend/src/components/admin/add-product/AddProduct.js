@@ -38,7 +38,7 @@ const AddProduct = ({ collections, addProduct }) => {
       id: generateUUID(),
       imageURL,
       name,
-      price,
+      price: parseFloat(price),
     }
 
     addProduct({ title, items })

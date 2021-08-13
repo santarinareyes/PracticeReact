@@ -16,7 +16,7 @@ export function* updateCollectionInFirebase({ payload: { title, items } }) {
     const collectionSnapshot = yield collectionRef.get()
     const itemsArray = yield collectionSnapshot.data().items
     yield itemsArray.push(items)
-    yield collectionRef.update({ itemsArray })
+    yield collectionRef.update({ items: itemsArray })
   } catch (err) {
     console.log(err)
   }
