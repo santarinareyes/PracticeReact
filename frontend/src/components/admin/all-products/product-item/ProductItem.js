@@ -19,8 +19,10 @@ const ProductItem = ({ collection: { items, title } }) => {
             <S.ProductInfoContainer key={id}>
               <S.Text>{name}</S.Text>
               <S.Text>Price: {price} SEK</S.Text>
-              <S.Text onClick={handleModal}>View image</S.Text>
-              <S.Text>Edit</S.Text>
+              <S.Text hover onClick={handleModal}>
+                View image
+              </S.Text>
+              <S.Text hover>Edit</S.Text>
             </S.ProductInfoContainer>
             <Spacer h='10' />
             <Modal
@@ -29,7 +31,11 @@ const ProductItem = ({ collection: { items, title } }) => {
               contentLabel={name}
               style={S.modalStyles}
             >
-              <img src={imageURL} alt={`${name}`} />
+              <S.ModalContainer imageURL={imageURL}>
+                <S.RemoveButtonContainer onClick={handleModal}>
+                  &#10005;
+                </S.RemoveButtonContainer>
+              </S.ModalContainer>
             </Modal>
           </>
         ))}
