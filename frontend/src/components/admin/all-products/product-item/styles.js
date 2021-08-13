@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Title = styled.h2`
   display: flex;
@@ -24,3 +24,14 @@ export const Text = styled.h3`
     font-size: 20px;
   }
 `
+
+export const modalStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}
