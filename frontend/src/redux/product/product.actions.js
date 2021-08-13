@@ -41,3 +41,8 @@ export const addProduct = payload => ({
 export const addProductSuccess = () => ({
   type: ProductActionTypes.ADD_PRODUCT_SUCCESS,
 })
+
+export const addProductFailure = payload => ({
+  type: ProductActionTypes.ADD_PRODUCT_FAILURE,
+  payload,
+})

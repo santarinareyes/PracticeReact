@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormInput from '../../form-input/FormInput'
 import CustomButton from '../../custom-button/CustomButton'
-import { selectCollectionsForPreview } from '../../../redux/product/product.selectors'
+import {
+  selectCollectionError,
+  selectCollectionsForPreview,
+} from '../../../redux/product/product.selectors'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
-import { getCollectionRef } from '../../../firebase/firebase.utils'
 import { addProduct } from '../../../redux/product/product.actions'
 
 const initialState = {
@@ -14,13 +16,21 @@ const initialState = {
   imageURL: '',
 }
 
-const AddProduct = ({ collections, addProduct }) => {
+const AddProduct = ({ collections, addProduct, errorMessage }) => {
   const [productInfo, setProductInfo] = useState(initialState)
   const { title, name, price, imageURL } = productInfo
+
+  useEffect(() => {
+    if (!errorMessage) return
+
+    alert(errorMessage)
+  }, [errorMessage])
 
   const handleChange = ({ target: { name, value } }) => {
     setProductInfo({ ...productInfo, [name]: value })
   }
+
+  console.log('errorMessage', errorMessage)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -102,6 +112,7 @@ const AddProduct = ({ collections, addProduct }) => {
 
 const mapStateToProps = createStructuredSelector({
   collections: selectCollectionsForPreview,
+  errorMessage: selectCollectionError,
 })
 
 const mapDispatchToProps = dispatch => ({

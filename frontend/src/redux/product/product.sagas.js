@@ -5,6 +5,7 @@ import {
   getCollectionRef,
 } from '../../firebase/firebase.utils'
 import {
+  addProductFailure,
   addProductSuccess,
   fetchCollectionsFailure,
   fetchCollectionsSuccess,
@@ -16,6 +17,17 @@ export function* updateCollectionInFirebase({ payload: { title, items } }) {
     const collectionRef = yield getCollectionRef(title)
     const collectionSnapshot = yield collectionRef.get()
     const itemsArray = yield collectionSnapshot.data().items
+
+    const itemExist = yield itemsArray.find(
+      itemInFirebase =>
+        itemInFirebase.name.toLowerCase() === items.name.toLowerCase()
+    )
+
+    if (itemExist) {
+      yield put(addProductFailure('Product with this name already exists'))
+      return
+    }
+
     yield itemsArray.push(items)
     yield collectionRef.update({ items: itemsArray })
     yield put(addProductSuccess())

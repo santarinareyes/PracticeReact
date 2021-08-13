@@ -29,3 +29,8 @@ export const selectIsCollectionLoaded = createSelector(
   [selectProduct],
   product => !!product.collections
 )
+
+export const selectCollectionError = createSelector(
+  [selectProduct],
+  product => product.errorMessage
+)
