@@ -50,12 +50,28 @@ export const getUserCartRef = async userId => {
   }
 }
 
+export const getCollectionRef = async collectionTitle => {
+  const collectionRef = firestore
+    .collection('collections')
+    .where('title', '==', collectionTitle)
+  const snapShot = await collectionRef.get()
+
+  console.log('snapShot', snapShot)
+
+  if (snapShot.empty) {
+    const collectionDocRef = firestore.collection('collections').doc()
+    await collectionDocRef.set({ title: collectionTitle, items: [] })
+    return collectionDocRef
+  } else {
+    return snapShot.docs[0].ref
+  }
+}
+
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd
 ) => {
   const collectionRef = firestore.collection(collectionKey)
-
   const batch = firestore.batch()
 
   objectsToAdd.forEach(obj => {

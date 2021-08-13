@@ -1,20 +1,55 @@
 import { useState } from 'react'
 import FormInput from '../../form-input/FormInput'
 import CustomButton from '../../custom-button/CustomButton'
+import { selectCollectionsForPreview } from '../../../redux/product/product.selectors'
+import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
+import { getCollectionRef } from '../../../firebase/firebase.utils'
 
-const AddProduct = () => {
-  const [addProduct, setAddProduct] = useState({})
+const initialState = {
+  title: '',
+  name: '',
+  price: '',
+  image: '',
+}
 
-  const handleChange = () => {}
+const AddProduct = ({ collections }) => {
+  const [productInfo, setProductInfo] = useState(initialState)
+  const { title, name, price, image } = productInfo
+
+  const handleChange = ({ target: { name, value } }) => {
+    setProductInfo({ ...productInfo, [name]: value })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    getCollectionRef(title)
+  }
+
+  console.log('productInfo', productInfo)
 
   return (
     <div style={{ width: '100%' }}>
       <h2 style={{ display: 'flex', justifyContent: 'center' }}>Add Product</h2>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <select
+          style={{ padding: '10px' }}
+          onChange={handleChange}
+          id='title'
+          name='title'
+        >
+          <option value='none'>Choose collection</option>
+          {collections &&
+            collections.map(({ title }) => (
+              <option value={title}>{title}</option>
+            ))}
+        </select>
+      </div>
       <FormInput
         onChange={handleChange}
         type='text'
         name='name'
-        value=''
+        value={name}
         label='Product Name'
         required
       />
@@ -22,7 +57,7 @@ const AddProduct = () => {
         onChange={handleChange}
         type='number'
         name='price'
-        value=''
+        value={price}
         label='Product Price'
         required
       />
@@ -30,7 +65,7 @@ const AddProduct = () => {
         onChange={handleChange}
         type='text'
         name='image'
-        value=''
+        value={image}
         label='Image URL'
         required
       />
@@ -41,10 +76,14 @@ const AddProduct = () => {
           paddingBottom: '40px',
         }}
       >
-        <CustomButton>Confirm Product</CustomButton>
+        <CustomButton onClick={handleSubmit}>Submit Product</CustomButton>
       </div>
     </div>
   )
 }
 
-export default AddProduct
+const mapStateToProps = createStructuredSelector({
+  collections: selectCollectionsForPreview,
+})
+
+export default connect(mapStateToProps)(AddProduct)
