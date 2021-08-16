@@ -30,11 +30,11 @@ const Admin = ({ fetchCollectionsStart }) => {
     <S.AdminContainer>
       <S.ButtonContainer>
         <CustomButton name='allProducts' onClick={handleButtonClicked}>
-          All Products
+          {buttonClicked.allProducts ? 'Hide Products' : 'All Products'}
         </CustomButton>
         <Spacer w='10' />
         <CustomButton name='addProduct' onClick={handleButtonClicked}>
-          Add Product
+          {buttonClicked.addProduct ? 'Hide Add Prod.' : 'Add Product'}
         </CustomButton>
       </S.ButtonContainer>
       <S.AddProductContainer clicked={buttonClicked.addProduct}>
