@@ -31,3 +31,11 @@ export const setCartFromFirebase = cartItems => ({
   type: CartActionTypes.SET_CART_FROM_FIREBASE,
   payload: cartItems,
 })
+
+export const stripePaymentStart = () => ({
+  type: CartActionTypes.STRIPE_PAYMENT_START,
+})
+
+export const stripePaymentSuccess = () => ({
+  type: CartActionTypes.STRIPE_PAYMENT_SUCCESS,
+})

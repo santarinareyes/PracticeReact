@@ -43,7 +43,7 @@ export const getUserCartRef = async userId => {
 
   if (snapShot.empty) {
     const cartDocRef = firestore.collection('carts').doc()
-    await cartDocRef.set({ userId, cartItems: [], paid: false })
+    await cartDocRef.set({ userId, cartItems: [] })
     return cartDocRef
   } else {
     return snapShot.docs[0].ref
