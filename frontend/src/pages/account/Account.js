@@ -10,12 +10,14 @@ import {
 } from '../../redux/user/user.selectors'
 import Spinner from '../../components/spinner/Spinner'
 import {
+  deleteUserStart,
   forceLoadingFalse,
   newPasswordStart,
 } from '../../redux/user/user.actions'
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 import Spacer from '../../components/spacer/Spacer'
 import Admin from '../../components/admin/Admin'
+import DeleteAccount from '../../components/account-manager/delete-account/DeleteAccount'
 
 const buttonInitial = {
   changePassword: false,
@@ -119,13 +121,7 @@ const AccountPage = ({
               <CustomButton name='changePassword' onClick={handleButtonClicked}>
                 Change Password
               </CustomButton>
-              <CustomButton
-                name='changePassword'
-                onClick={handleButtonClicked}
-                inverted
-              >
-                Delete Account
-              </CustomButton>
+              <DeleteAccount currentUser={currentUser} />
             </S.ButtonsInRow>
           </S.ButtonContainer>
         </S.FormContainer>
@@ -176,6 +172,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   updatePassword: password => dispatch(newPasswordStart(password)),
   forceFalse: () => dispatch(forceLoadingFalse()),
+  deleteUser: userId => dispatch(deleteUserStart(userId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage)

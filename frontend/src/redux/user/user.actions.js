@@ -68,3 +68,17 @@ export const newPasswordSuccess = () => ({
 export const forceLoadingFalse = () => ({
   type: UserActionTypes.FORCE_LOADING_FALSE,
 })
+
+export const deleteUserStart = payload => ({
+  type: UserActionTypes.DELETE_USER_START,
+  payload,
+})
+
+export const deleteUserSuccess = () => ({
+  type: UserActionTypes.DELETE_USER_SUCCESS,
+})
+
+export const deleteUserFailure = err => ({
+  type: UserActionTypes.DELETE_USER_FAILURE,
+  payload: err,
+})

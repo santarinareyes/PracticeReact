@@ -5,6 +5,7 @@ import {
   auth,
   createUserProfileDoc,
   getCurrentUser,
+  firestore,
 } from '../../firebase/firebase.utils'
 import {
   signInSuccess,
@@ -15,6 +16,8 @@ import {
   signUpFailure,
   newPasswordFailure,
   newPasswordSuccess,
+  deleteUserSuccess,
+  deleteUserFailure,
 } from './user.actions'
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
@@ -92,6 +95,19 @@ export function* newPassword({ payload }) {
   }
 }
 
+export function* deleteUser() {
+  const currentUser = yield auth.currentUser
+
+  if (currentUser) {
+    try {
+      yield currentUser?.delete()
+      yield put(deleteUserSuccess())
+    } catch (err) {
+      yield put(deleteUserFailure(err))
+    }
+  }
+}
+
 export function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getSnapshotFromUserAuth(user, additionalData)
 }
@@ -112,7 +128,10 @@ export function* onCheckUserSession() {
 }
 
 export function* onSignOutStart() {
-  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut)
+  yield takeLatest(
+    [UserActionTypes.SIGN_OUT_START, UserActionTypes.DELETE_USER_SUCCESS],
+    signOut
+  )
 }
 
 export function* onSignUpStart() {
@@ -127,6 +146,10 @@ export function* onNewPassword() {
   yield takeLatest(UserActionTypes.NEW_PASSWORD_START, newPassword)
 }
 
+export function* onDeleteUser() {
+  yield takeLatest(UserActionTypes.DELETE_USER_START, deleteUser)
+}
+
 export function* userSagas() {
   yield all([
     call(onGoogleSignInStart),
@@ -136,5 +159,6 @@ export function* userSagas() {
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(onNewPassword),
+    call(onDeleteUser),
   ])
 }
