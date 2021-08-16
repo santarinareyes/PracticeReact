@@ -14,5 +14,5 @@ export const Title = styled.h2`
 export const ItemsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 30px;
+  grid-gap: 10px;
 `

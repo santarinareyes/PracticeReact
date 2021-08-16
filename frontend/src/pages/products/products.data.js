@@ -9,73 +9,73 @@ export const collections = {
         name: 'One One',
         imageURL:
           'https://images.unsplash.com/photo-1613057389222-5c429f4ec162?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80',
-        price: 1,
+        price: 10,
       },
       {
         id: 2,
         name: 'One Two',
         imageURL:
           'https://images.unsplash.com/photo-1613057389222-5c429f4ec162?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80',
-        price: 11,
+        price: 20,
       },
       {
         id: 3,
         name: 'One Three',
         imageURL:
           'https://images.unsplash.com/photo-1613057389222-5c429f4ec162?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80',
-        price: 111,
+        price: 30,
       },
       {
         id: 4,
         name: 'One Four',
         imageURL:
           'https://images.unsplash.com/photo-1613057389222-5c429f4ec162?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80',
-        price: 1111,
+        price: 40,
       },
       {
         id: 5,
         name: 'One Five',
         imageURL:
           'https://images.unsplash.com/photo-1613057389222-5c429f4ec162?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80',
-        price: 11111,
+        price: 50,
       },
     ],
   },
   two: {
-    id: 2,
+    id: 11,
     title: 'Two',
     route: 'two',
     items: [
       {
-        id: 6,
+        id: 12,
         name: 'Two One',
         imageURL:
           'https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
         price: 2,
       },
       {
-        id: 7,
+        id: 13,
         name: 'Two Two',
         imageURL:
           'https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
         price: 22,
       },
       {
-        id: 8,
+        id: 14,
         name: 'Two Three',
         imageURL:
           'https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
         price: 222,
       },
       {
-        id: 9,
+        id: 15,
         name: 'Two Four',
         imageURL:
           'https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',
         price: 2222,
       },
       {
-        id: 10,
+        id: 16,
         name: 'Two Five',
         imageURL:
           'https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80',

@@ -1,13 +1,13 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import {css} from 'styled-components';
+
+
 
 export const FormInputContainer = styled.div`
   position: relative;
   margin: 45px 0;
-
-  input[type='password'] {
-    letter-spacing: 0.3em;
-  }
 `
+ 
 
 export const FormInput = styled.input`
   background: none;
@@ -26,22 +26,41 @@ export const FormInput = styled.input`
     outline: none;
   }
 
-  &:focus ~ .form-input-label {
-    @include shrinkLabel();
+  &:focus ~ label {
+    @include shrinkLabelStyles();
   }
+}`
 
-  .form-input-label {
-    color: $sub-color;
-    font-size: 16px;
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 5px;
-    top: 10px;
-    transition: 300ms ease all;
-
-    &.shrink {
-      @include shrinkLabel();
-    }
-  }
+export const InputContainer =styled.input`
+position: relative;
+margin: 45px 0;
 `
+
+export const Input = styled.div`
+input[type='password'] {
+  letter-spacing: 0.3em;
+}
+`
+
+export const FormInputLabel = styled.div`
+
+  color: $sub-color;
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 300ms ease all;
+
+  &.shrink {
+    ${shrinkLabelStyles}}
+`
+
+
+
+const shrinkLabelStyles = css`
+  top: -14px;
+  font-size: 12px;
+  color: ${mainColor};
+`;

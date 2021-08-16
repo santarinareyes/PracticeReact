@@ -70,6 +70,6 @@ export const AddButton = styled(CustomButton)`
   @media screen and (max-width: 800px) {
     display: block;
     min-width: unset;
-    padding: 0 10px;
+    padding: 0 20px;
   }
 `
