@@ -115,9 +115,18 @@ const AccountPage = ({
         />
         <S.FormContainer clicked={!buttonClicked.changePassword}>
           <S.ButtonContainer>
-            <CustomButton name='changePassword' onClick={handleButtonClicked}>
-              Change Password
-            </CustomButton>
+            <S.ButtonsInRow>
+              <CustomButton name='changePassword' onClick={handleButtonClicked}>
+                Change Password
+              </CustomButton>
+              <CustomButton
+                name='changePassword'
+                onClick={handleButtonClicked}
+                inverted
+              >
+                Delete Account
+              </CustomButton>
+            </S.ButtonsInRow>
           </S.ButtonContainer>
         </S.FormContainer>
         <S.FormContainer clicked={buttonClicked.changePassword}>
