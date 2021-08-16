@@ -121,7 +121,7 @@ const AccountPage = ({
               <CustomButton name='changePassword' onClick={handleButtonClicked}>
                 Change Password
               </CustomButton>
-              <DeleteAccount currentUser={currentUser} />
+              <DeleteAccount />
             </S.ButtonsInRow>
           </S.ButtonContainer>
         </S.FormContainer>

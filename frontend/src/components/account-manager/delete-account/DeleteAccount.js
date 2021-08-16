@@ -6,7 +6,7 @@ import Spacer from '../../spacer/Spacer'
 import { connect } from 'react-redux'
 import { deleteUserStart } from '../../../redux/user/user.actions'
 
-const DeleteAccount = ({ deleteUser, currentUser }) => {
+const DeleteAccount = ({ deleteUser }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const handleModal = () => {
