@@ -20,21 +20,20 @@ export function* onSignOutSucces() {
 
 export function* addPaidCartToFirebase() {
   const currentUser = yield select(selectCurrentUser)
+  const id = currentUser ? currentUser.id : 'guest'
 
-  if (currentUser) {
-    try {
-      const paidCartDocRef = firestore.collection('paidCarts').doc()
-      const cartItems = yield select(selectCartItems)
-      yield paidCartDocRef.set({
-        userId: currentUser.id,
-        cartItems,
-        payment: 'stripe',
-      })
-      yield put(clearCart())
-      yield put(stripePaymentSuccess())
-    } catch (err) {
-      console.log(err)
-    }
+  try {
+    const paidCartDocRef = firestore.collection('paidCarts').doc()
+    const cartItems = yield select(selectCartItems)
+    yield paidCartDocRef.set({
+      userId: id,
+      cartItems,
+      payment: 'stripe',
+    })
+    yield put(clearCart())
+    yield put(stripePaymentSuccess())
+  } catch (err) {
+    console.log(err)
   }
 }
 

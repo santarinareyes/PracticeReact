@@ -35,7 +35,7 @@ const StripeCheckoutButton = ({ price, stripePaymentStart }) => {
       shippingAddress
       description={`Your total is ${price} SEK`}
       amount={priceForStripe}
-      panelLabel='Pay Now2'
+      panelLabel='Betala'
       token={onToken}
       stripeKey={publishableKey}
     />
