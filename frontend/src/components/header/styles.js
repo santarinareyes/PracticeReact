@@ -32,6 +32,6 @@ export const NavOptions = styled.div`
 `
 
 export const OptionLink = styled(Link)`
-  padding: 10px 15px;
+  padding: 10px 10px;
   cursor: pointer;
 `
