@@ -38,6 +38,8 @@ const AccountPage = ({
   const [newPassword, setNewPassword] = useState(newPasswordInitial)
   const [buttonClicked, setButtonClicked] = useState(buttonInitial)
 
+  console.log('currentUser', currentUser)
+
   useEffect(() => {
     const offlineTimer = setTimeout(() => {
       forceFalse()

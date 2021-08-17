@@ -51,6 +51,8 @@ const AddProduct = ({ collections, addProduct, errorMessage }) => {
     }
 
     addProduct({ title, items })
+    alert('Product added successfully')
+    setProductInfo(initialState)
   }
 
   return (

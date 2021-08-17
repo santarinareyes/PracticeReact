@@ -35,7 +35,7 @@ export const CategoryItem = styled.div`
 `
 
 export const Image = styled.div`
-  width: 100%;
+  width: 98%;
   height: 95%;
   background-size: cover;
   background-position: center;
