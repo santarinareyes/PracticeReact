@@ -8,9 +8,11 @@ import { checkUserSession } from './redux/user/user.actions'
 import { GlobalStyle } from './global.styles'
 import Spinner from './components/spinner/Spinner'
 import ErrorBoundary from './components/error-boundary/ErrorBoundary'
-import ContactPage from './pages/contact/Contact'
-import AccountPage from './pages/account/Account'
+// import ContactPage from './pages/contact/Contact'
+// import AccountPage from './pages/account/Account'
 
+const AccountPage = lazy(() => import('./pages/account/Account'))
+const ContactPage = lazy(() => import('./pages/contact/Contact'))
 const Homepage = lazy(() => import('./pages/homepage/Homepage'))
 const Checkout = lazy(() => import('./pages/checkout/Checkout'))
 const ProductsPage = lazy(() => import('./pages/products/ProductsPage'))

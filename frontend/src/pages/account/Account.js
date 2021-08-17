@@ -1,7 +1,7 @@
 import FormInput from '../../components/form-input/FormInput'
 import * as S from './styles'
 import CustomButton from '../../components/custom-button/CustomButton'
-import { useEffect, useState } from 'react'
+import { lazy, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 import {
@@ -16,8 +16,9 @@ import {
 } from '../../redux/user/user.actions'
 import SignInOrSignUp from '../signInOrSignUp/SignInOrSignUp'
 import Spacer from '../../components/spacer/Spacer'
-import Admin from '../../components/admin/Admin'
 import DeleteAccount from '../../components/account-manager/delete-account/DeleteAccount'
+
+const Admin = lazy(() => import('../../components/admin/Admin'))
 
 const buttonInitial = {
   changePassword: false,
