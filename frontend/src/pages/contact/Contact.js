@@ -26,6 +26,7 @@ const ContactPage = () => {
       return
     }
 
+    alert('Message sent')
     createContactsDoc(contactDetails)
     setContactDetails(initial)
   }
