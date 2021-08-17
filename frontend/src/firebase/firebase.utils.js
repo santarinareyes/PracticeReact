@@ -11,6 +11,17 @@ const config = {
   appId: '1:594946870353:web:8cc7b219eac6189da5bc70',
 }
 
+export const createContactsDoc = async details => {
+  const { name, email, message } = details
+
+  const contactsRef = firestore.collection(`contacts`).doc()
+  try {
+    await contactsRef.set({ name, email, message })
+  } catch (err) {
+    console.log('err', err)
+  }
+}
+
 export const createUserProfileDoc = async (userAuth, data) => {
   if (!userAuth) return
 

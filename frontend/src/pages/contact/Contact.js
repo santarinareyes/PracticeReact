@@ -2,16 +2,28 @@ import { useState } from 'react'
 import FormInput from '../../components/form-input/FormInput'
 import * as S from './styles'
 import CustomButton from '../../components/custom-button/CustomButton'
+import { createContactsDoc } from '../../firebase/firebase.utils'
 
 const ContactPage = () => {
-  const [userDetails, setUserDetails] = useState({
+  const [contactDetails, setContactDetails] = useState({
     name: '',
     email: '',
     message: '',
   })
+  const { name, email, message } = contactDetails
 
   const handleChange = ({ target: { name, value } }) => {
-    setUserDetails({ ...userDetails, [name]: value })
+    setContactDetails({ ...contactDetails, [name]: value })
+  }
+
+  const handleSubmit = e => {
+    if (!name || !email || !message) {
+      alert('All fields must be filled')
+      return
+    }
+
+    createContactsDoc(contactDetails)
+    e.preventDefault()
   }
 
   return (
@@ -21,7 +33,7 @@ const ContactPage = () => {
           onChange={handleChange}
           type='text'
           name='name'
-          value={userDetails.name}
+          value={contactDetails.name}
           label='Name'
           required
         />
@@ -29,7 +41,7 @@ const ContactPage = () => {
           onChange={handleChange}
           type='email'
           name='email'
-          value={userDetails.email}
+          value={contactDetails.email}
           label='Email'
           required
         />
@@ -37,12 +49,12 @@ const ContactPage = () => {
           onChange={handleChange}
           type='text'
           name='message'
-          value={userDetails.message}
+          value={contactDetails.message}
           label='Message'
           required
         />
       </form>
-      <CustomButton>Send</CustomButton>
+      <CustomButton onClick={handleSubmit}>Send</CustomButton>
     </S.ContactContainer>
   )
 }
