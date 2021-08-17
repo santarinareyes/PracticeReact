@@ -4,12 +4,14 @@ import * as S from './styles'
 import CustomButton from '../../components/custom-button/CustomButton'
 import { createContactsDoc } from '../../firebase/firebase.utils'
 
+const initial = {
+  name: '',
+  email: '',
+  message: '',
+}
+
 const ContactPage = () => {
-  const [contactDetails, setContactDetails] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const [contactDetails, setContactDetails] = useState(initial)
   const { name, email, message } = contactDetails
 
   const handleChange = ({ target: { name, value } }) => {
@@ -17,13 +19,15 @@ const ContactPage = () => {
   }
 
   const handleSubmit = e => {
+    e.preventDefault()
+
     if (!name || !email || !message) {
       alert('All fields must be filled')
       return
     }
 
     createContactsDoc(contactDetails)
-    e.preventDefault()
+    setContactDetails(initial)
   }
 
   return (
