@@ -22,7 +22,7 @@ const ContactPage = () => {
     e.preventDefault()
 
     if (!name || !email || !message) {
-      alert('All fields must be filled')
+      alert('All fields must be filled!')
       return
     }
 
